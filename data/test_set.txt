@@ -1,53 +1,402 @@
-.model bigger_.01example.mxml
-.dummy a_.04complete_.05 g_.04complete_.05 b_.04complete_.05 d_.04complete_.05 h_.04complete_.05 f_.04complete_.05 e_.04complete_.05 c_.04complete_.05
-.state graph
-s0 d_.04complete_.05 s13
-s0 d_.04complete_.05 s2
-s1 c_.04complete_.05 s6
-s1 c_.04complete_.05 s0
-s1 d_.04complete_.05 s12
-s1 b_.04complete_.05 s6
-s2 e_.04complete_.05 s11
-s2 e_.04complete_.05 s5
-s2 e_.04complete_.05 s8
-s2 e_.04complete_.05 s16
-s3 e_.04complete_.05 s11
-s3 e_.04complete_.05 s5
-s3 e_.04complete_.05 s16
-s4 d_.04complete_.05 s7
-s4 b_.04complete_.05 s6
-s4 b_.04complete_.05 s0
-s5 f_.04complete_.05 s10
-s5 h_.04complete_.05 s15
-s6 d_.04complete_.05 s3
-s6 d_.04complete_.05 s13
-s7 b_.04complete_.05 s3
-s7 b_.04complete_.05 s13
-s8 f_.04complete_.05 s14
-s8 f_.04complete_.05 s4
-s8 h_.04complete_.05 s15
-s9 c_.04complete_.05 s6
-s9 c_.04complete_.05 s0
-s9 d_.04complete_.05 s12
-s9 b_.04complete_.05 s6
-s10 c_.04complete_.05 s6
-s10 c_.04complete_.05 s0
-s10 d_.04complete_.05 s12
-s10 b_.04complete_.05 s6
-s11 h_.04complete_.05 s15
-s12 c_.04complete_.05 s3
-s12 c_.04complete_.05 s13
-s12 c_.04complete_.05 s2
-s12 b_.04complete_.05 s13
-s13 e_.04complete_.05 s11
-s13 e_.04complete_.05 s5
-s14 d_.04complete_.05 s7
-s14 b_.04complete_.05 s6
-s14 b_.04complete_.05 s0
-s16 h_.04complete_.05 s15
-s16 g_.04complete_.05 s15
-s17 a_.04complete_.05 s9
-s17 a_.04complete_.05 s1
-s17 a_.04complete_.05 s10
-.marking { s17 }
-.end
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?><tsml label="bigger-example.mxml" layout="true">
+<state id="state1">
+<name>
+<text>
+s0</text>
+</name>
+<graphics>
+<position x="143.0" y="345.5"/>
+<dimension x="50.0" y="30.0"/>
+<fill color="#c0c0c0"/>
+</graphics>
+</state>
+<state id="state2">
+<name>
+<text>
+s1</text>
+</name>
+<graphics>
+<position x="144.0" y="15.5"/>
+<dimension x="50.0" y="30.0"/>
+<fill color="#c0c0c0"/>
+</graphics>
+</state>
+<state id="state3">
+<name>
+<text>
+s2</text>
+</name>
+<graphics>
+<position x="122.0" y="455.5"/>
+<dimension x="50.0" y="30.0"/>
+<fill color="#c0c0c0"/>
+</graphics>
+</state>
+<state id="state4">
+<name>
+<text>
+s3</text>
+</name>
+<graphics>
+<position x="208.0" y="345.5"/>
+<dimension x="50.0" y="30.0"/>
+<fill color="#c0c0c0"/>
+</graphics>
+</state>
+<state id="state5">
+<name>
+<text>
+s4</text>
+</name>
+<graphics>
+<position x="221.0" y="510.5"/>
+<dimension x="50.0" y="30.0"/>
+<fill color="#c0c0c0"/>
+</graphics>
+</state>
+<state id="state6">
+<name>
+<text>
+s5</text>
+</name>
+<graphics>
+<position x="144.0" y="70.5"/>
+<dimension x="50.0" y="30.0"/>
+<fill color="#c0c0c0"/>
+</graphics>
+</state>
+<state id="state7">
+<name>
+<text>
+s6</text>
+</name>
+<graphics>
+<position x="218.5" y="400.5"/>
+<dimension x="50.0" y="30.0"/>
+<fill color="#c0c0c0"/>
+</graphics>
+</state>
+<state id="state8">
+<name>
+<text>
+s7</text>
+</name>
+<graphics>
+<position x="164.0" y="125.5"/>
+<dimension x="50.0" y="30.0"/>
+<fill color="#c0c0c0"/>
+</graphics>
+</state>
+<state id="state9">
+<name>
+<text>
+s8</text>
+</name>
+<graphics>
+<position x="221.0" y="235.5"/>
+<dimension x="50.0" y="30.0"/>
+<fill color="#c0c0c0"/>
+</graphics>
+</state>
+<state id="state10">
+<name>
+<text>
+s9</text>
+</name>
+<graphics>
+<position x="170.0" y="290.5"/>
+<dimension x="50.0" y="30.0"/>
+<fill color="#c0c0c0"/>
+</graphics>
+</state>
+<state id="state11">
+<name>
+<text>
+s10</text>
+</name>
+<graphics>
+<position x="221.0" y="455.5"/>
+<dimension x="50.0" y="30.0"/>
+<fill color="#c0c0c0"/>
+</graphics>
+</state>
+<state id="state12">
+<name>
+<text>
+s11</text>
+</name>
+<graphics>
+<position x="229.0" y="125.5"/>
+<dimension x="50.0" y="30.0"/>
+<fill color="#c0c0c0"/>
+</graphics>
+</state>
+<state id="state13">
+<name>
+<text>
+s12</text>
+</name>
+<graphics>
+<position x="129.0" y="400.5"/>
+<dimension x="50.0" y="30.0"/>
+<fill color="#c0c0c0"/>
+</graphics>
+</state>
+<state id="state14">
+<name>
+<text>
+s13</text>
+</name>
+<graphics>
+<position x="226.0" y="180.5"/>
+<dimension x="50.0" y="30.0"/>
+<fill color="#c0c0c0"/>
+</graphics>
+</state>
+<transition id="transition1" source="state1" target="state13">
+<name>
+<text>
+b(complete)</text>
+</name>
+<probability>0.0</probability></transition>
+<transition id="transition2" source="state1" target="state7">
+<name>
+<text>
+b(complete)</text>
+</name>
+<probability>0.0</probability></transition>
+<transition id="transition3" source="state2" target="state6">
+<name>
+<text>
+a(complete)</text>
+</name>
+<probability>0.0</probability></transition>
+<transition id="transition4" source="state3" target="state6">
+<name>
+<text>
+f(complete)</text>
+</name>
+<graphics>
+<position x="65.5" y="400.5"/>
+<position x="65.5" y="345.5"/>
+<position x="65.5" y="290.5"/>
+<position x="65.5" y="235.5"/>
+<position x="65.5" y="180.5"/>
+<position x="65.5" y="125.5"/>
+</graphics>
+<probability>0.0</probability></transition>
+<transition id="transition5" source="state3" target="state5">
+<name>
+<text>
+h(complete)</text>
+</name>
+<probability>0.0</probability></transition>
+<transition id="transition6" source="state4" target="state13">
+<name>
+<text>
+d(complete)</text>
+</name>
+<probability>0.0</probability></transition>
+<transition id="transition7" source="state4" target="state7">
+<name>
+<text>
+d(complete)</text>
+</name>
+<probability>0.0</probability></transition>
+<transition id="transition8" source="state6" target="state8">
+<name>
+<text>
+c(complete)</text>
+</name>
+<probability>0.0</probability></transition>
+<transition id="transition9" source="state6" target="state12">
+<name>
+<text>
+d(complete)</text>
+</name>
+<probability>0.0</probability></transition>
+<transition id="transition10" source="state6" target="state4">
+<name>
+<text>
+b(complete)</text>
+</name>
+<graphics>
+<position x="124.0" y="125.5"/>
+<position x="145.0" y="180.5"/>
+<position x="145.0" y="235.5"/>
+<position x="210.0" y="290.5"/>
+</graphics>
+<probability>0.0</probability></transition>
+<transition id="transition11" source="state7" target="state11">
+<name>
+<text>
+e(complete)</text>
+</name>
+<probability>0.0</probability></transition>
+<transition id="transition12" source="state8" target="state13">
+<name>
+<text>
+d(complete)</text>
+</name>
+<graphics>
+<position x="103.0" y="180.5"/>
+<position x="103.0" y="235.5"/>
+<position x="103.0" y="290.5"/>
+<position x="103.0" y="345.5"/>
+</graphics>
+<probability>0.0</probability></transition>
+<transition id="transition13" source="state8" target="state14">
+<name>
+<text>
+d(complete)</text>
+</name>
+<probability>0.0</probability></transition>
+<transition id="transition14" source="state8" target="state7">
+<name>
+<text>
+d(complete)</text>
+</name>
+<graphics>
+<position x="164.0" y="180.5"/>
+<position x="164.0" y="235.5"/>
+<position x="225.0" y="290.5"/>
+<position x="248.0" y="345.5"/>
+</graphics>
+<probability>0.0</probability></transition>
+<transition id="transition15" source="state9" target="state10">
+<name>
+<text>
+f(complete)</text>
+</name>
+<probability>0.0</probability></transition>
+<transition id="transition16" source="state9" target="state5">
+<name>
+<text>
+h(complete)</text>
+</name>
+<graphics>
+<position x="268.5" y="290.5"/>
+<position x="293.0" y="345.5"/>
+<position x="293.0" y="400.5"/>
+<position x="293.0" y="455.5"/>
+</graphics>
+<probability>0.0</probability></transition>
+<transition id="transition17" source="state10" target="state1">
+<name>
+<text>
+d(complete)</text>
+</name>
+<probability>0.0</probability></transition>
+<transition id="transition18" source="state10" target="state4">
+<name>
+<text>
+b(complete)</text>
+</name>
+<probability>0.0</probability></transition>
+<transition id="transition19" source="state10" target="state8">
+<name>
+<text>
+b(complete)</text>
+</name>
+<graphics>
+<position x="125.5" y="235.5"/>
+<position x="125.5" y="180.5"/>
+</graphics>
+<probability>0.0</probability></transition>
+<transition id="transition20" source="state11" target="state5">
+<name>
+<text>
+h(complete)</text>
+</name>
+<graphics>
+<position x="217.25" y="483.0"/>
+</graphics>
+<probability>0.0</probability></transition>
+<transition id="transition21" source="state11" target="state5">
+<name>
+<text>
+g(complete)</text>
+</name>
+<graphics>
+<position x="224.75" y="483.0"/>
+</graphics>
+<probability>0.0</probability></transition>
+<transition id="transition22" source="state12" target="state13">
+<name>
+<text>
+c(complete)</text>
+</name>
+<graphics>
+<position x="182.5" y="180.5"/>
+<position x="84.0" y="235.5"/>
+<position x="84.0" y="290.5"/>
+<position x="84.0" y="345.5"/>
+</graphics>
+<probability>0.0</probability></transition>
+<transition id="transition23" source="state12" target="state14">
+<name>
+<text>
+c(complete)</text>
+</name>
+<probability>0.0</probability></transition>
+<transition id="transition24" source="state12" target="state7">
+<name>
+<text>
+c(complete)</text>
+</name>
+<graphics>
+<position x="279.0" y="180.5"/>
+<position x="279.0" y="235.5"/>
+<position x="253.5" y="290.5"/>
+<position x="263.0" y="345.5"/>
+</graphics>
+<probability>0.0</probability></transition>
+<transition id="transition25" source="state12" target="state13">
+<name>
+<text>
+b(complete)</text>
+</name>
+<graphics>
+<position x="190.0" y="180.5"/>
+<position x="91.5" y="235.5"/>
+<position x="91.5" y="290.5"/>
+<position x="91.5" y="345.5"/>
+</graphics>
+<probability>0.0</probability></transition>
+<transition id="transition26" source="state13" target="state3">
+<name>
+<text>
+e(complete)</text>
+</name>
+<probability>0.0</probability></transition>
+<transition id="transition27" source="state14" target="state11">
+<name>
+<text>
+e(complete)</text>
+</name>
+<graphics>
+<position x="261.0" y="235.5"/>
+<position x="283.5" y="290.5"/>
+<position x="278.0" y="345.5"/>
+<position x="278.0" y="400.5"/>
+</graphics>
+<probability>0.0</probability></transition>
+<transition id="transition28" source="state14" target="state9">
+<name>
+<text>
+e(complete)</text>
+</name>
+<probability>0.0</probability></transition>
+<transition id="transition29" source="state14" target="state3">
+<name>
+<text>
+e(complete)</text>
+</name>
+<graphics>
+<position x="179.5" y="235.5"/>
+<position x="50.5" y="290.5"/>
+<position x="50.5" y="345.5"/>
+<position x="50.5" y="400.5"/>
+</graphics>
+<probability>0.0</probability></transition>
+</tsml>

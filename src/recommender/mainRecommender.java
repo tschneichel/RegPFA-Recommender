@@ -2,11 +2,11 @@ package recommender;
 
 import java.io.*;
 
-import pfa_elements.pfa;
+import transitionData.*;
 
 public class mainRecommender {
 	public static void main (String args[]){
-		pfa testPFA = new pfa();
+		/*pfa testPFA = new pfa();
 		testPFA.print();
 		try {
 			FileOutputStream fileOutput = new FileOutputStream("object.data");
@@ -30,7 +30,10 @@ public class mainRecommender {
             newPFA.print();
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
+        }*/
+		
+		TransitionSystem testSystem = new TransitionSystem();
+		testSystem.print();
 	}
 
 }
