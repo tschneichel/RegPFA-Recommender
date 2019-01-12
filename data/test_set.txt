@@ -1,0 +1,53 @@
+.model bigger_.01example.mxml
+.dummy a_.04complete_.05 g_.04complete_.05 b_.04complete_.05 d_.04complete_.05 h_.04complete_.05 f_.04complete_.05 e_.04complete_.05 c_.04complete_.05
+.state graph
+s0 d_.04complete_.05 s13
+s0 d_.04complete_.05 s2
+s1 c_.04complete_.05 s6
+s1 c_.04complete_.05 s0
+s1 d_.04complete_.05 s12
+s1 b_.04complete_.05 s6
+s2 e_.04complete_.05 s11
+s2 e_.04complete_.05 s5
+s2 e_.04complete_.05 s8
+s2 e_.04complete_.05 s16
+s3 e_.04complete_.05 s11
+s3 e_.04complete_.05 s5
+s3 e_.04complete_.05 s16
+s4 d_.04complete_.05 s7
+s4 b_.04complete_.05 s6
+s4 b_.04complete_.05 s0
+s5 f_.04complete_.05 s10
+s5 h_.04complete_.05 s15
+s6 d_.04complete_.05 s3
+s6 d_.04complete_.05 s13
+s7 b_.04complete_.05 s3
+s7 b_.04complete_.05 s13
+s8 f_.04complete_.05 s14
+s8 f_.04complete_.05 s4
+s8 h_.04complete_.05 s15
+s9 c_.04complete_.05 s6
+s9 c_.04complete_.05 s0
+s9 d_.04complete_.05 s12
+s9 b_.04complete_.05 s6
+s10 c_.04complete_.05 s6
+s10 c_.04complete_.05 s0
+s10 d_.04complete_.05 s12
+s10 b_.04complete_.05 s6
+s11 h_.04complete_.05 s15
+s12 c_.04complete_.05 s3
+s12 c_.04complete_.05 s13
+s12 c_.04complete_.05 s2
+s12 b_.04complete_.05 s13
+s13 e_.04complete_.05 s11
+s13 e_.04complete_.05 s5
+s14 d_.04complete_.05 s7
+s14 b_.04complete_.05 s6
+s14 b_.04complete_.05 s0
+s16 h_.04complete_.05 s15
+s16 g_.04complete_.05 s15
+s17 a_.04complete_.05 s9
+s17 a_.04complete_.05 s1
+s17 a_.04complete_.05 s10
+.marking { s17 }
+.end
