@@ -5,11 +5,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TransitionSystem {
+public class TransitionSystem implements Serializable{
 	public Map<String,Transition> nameToTransition = new HashMap<String, Transition>();
 	public Map<String, State> nameToState = new HashMap<String, State>();
 	public ArrayList<String> stateNames;
@@ -100,21 +101,20 @@ public class TransitionSystem {
         		if (splitLine[0].equals("<transition id=")){
         			// If the current line is of form <transition id=, it will define the transition's name
         			Transition tempTransition = new Transition();
-        			String tempLabel = splitLine[1];
-        			tempTransition.setLabel(tempLabel);
         			tempTransition.setSource(nameToState.get(splitLine[3]));
         			tempTransition.setTarget(nameToState.get(splitLine[5]));
         			// Therefore, create new transition linking to states to each other
-        			transitionNames.add(tempLabel);
-        			// Also add the label of the current transition to the list of all transition names
         			for (int i = 0; i <= 1; i++){
         				br.readLine();
         			}
         			// skip two lines
         			splitLine = br.readLine().split("<");
         			// read next line contains the label of the transition
-        			tempTransition.setLabel(splitLine[0]);
+        			String tempLabel = splitLine[0];
+        			tempTransition.setLabel(tempLabel);
         			// add the label to the transition
+        			transitionNames.add(tempLabel);
+        			// and to the list of all transition names
         			br.readLine();
         			// skip another line
         			splitLine = br.readLine().split("<");
@@ -128,6 +128,9 @@ public class TransitionSystem {
         			tempTransition.setProbability(Float.valueOf(splitLine[1].substring(12, splitLine[1].length())));
         			// Sets the probability of current transition 
         			this.nameToTransition.put(tempLabel, tempTransition);
+        			ArrayList<Transition> tempTransitionList = tempTransition.getSource().getTransitions();
+        			tempTransitionList.add(tempTransition);
+        			tempTransition.getSource().setTransitions(tempTransitionList);
         		}
         		splitLine = br.readLine().toString().split(splitForTransitions);
         		// read next line so while loop continues
@@ -148,7 +151,7 @@ public class TransitionSystem {
         }
 	}
 	
-	public void print(){
+	public void printWholeSystem(){
 		System.out.println("The transition system consists of the following states:");
 		for (int i = 0; i < this.stateNames.size(); i++){
 			System.out.println(this.nameToState.get(stateNames.get(i)).getLabel());
@@ -159,7 +162,21 @@ public class TransitionSystem {
 			System.out.print(" is linked to ");
 			System.out.print(this.nameToTransition.get(transitionNames.get(i)).getTarget().getLabel());
 			System.out.print(" via ");
-			System.out.println(this.nameToTransition.get(transitionNames.get(i)).getLabel());
+			System.out.print(this.nameToTransition.get(transitionNames.get(i)).getLabel());
+			System.out.print(" with probability ");
+			System.out.println(this.nameToTransition.get(transitionNames.get(i)).getProbability());
+		}
+	}
+	public void printStatesWithTransitions(){
+		System.out.println("The states and their corresponding transitions are: ");
+		for (int i = 0; i < this.stateNames.size(); i++){
+			System.out.println(this.nameToState.get(stateNames.get(i)).getLabel()+" has the following transitions:");
+			for (int j = 0; j < this.nameToState.get(stateNames.get(i)).getTransitions().size(); j++){
+				System.out.print(this.nameToState.get(stateNames.get(i)).getTransitions().get(j).getLabel());
+				System.out.print(" linking to ");
+				System.out.println(this.nameToState.get(stateNames.get(i)).getTransitions().get(j).getTarget().getLabel());
+			}
+			System.out.println("");
 		}
 	}
 }

@@ -1,16 +1,18 @@
 package transitionData;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import pfa_elements.transitionOld;
 
-public class State {
+public class State implements Serializable {
 	private boolean isStart;
 	private String label;
 	private ArrayList<Transition> transitions;
 	
 	public State(){
-		isStart = false;
+		this.setIsStart(false);
+		this.setTransitions(new ArrayList<Transition>());
 	}
 	
 	public boolean getIsStart() {

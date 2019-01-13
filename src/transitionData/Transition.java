@@ -1,7 +1,8 @@
 package transitionData;
 
+import java.io.Serializable;
 
-public class Transition {
+public class Transition implements Serializable{
 	public State source;
 	public State target;
 	public String label;
