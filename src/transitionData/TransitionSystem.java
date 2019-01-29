@@ -11,16 +11,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TransitionSystem implements Serializable{
-	public Map<String,Transition> nameToTransition = new HashMap<String, Transition>();
+	public Map<String, ArrayList<Transition>> nameToTransition = new HashMap<String, ArrayList<Transition>>();
 	public Map<String, State> nameToState = new HashMap<String, State>();
 	public ArrayList<String> stateNames;
 	public ArrayList<String> transitionNames;
 
-	public Map<String, Transition> getNameToTransition() {
+	public Map<String, ArrayList<Transition>> getNameToTransition() {
 		return nameToTransition;
 	}
 
-	public void setNameToTransition(Map<String, Transition> nameToTransition) {
+	public void setNameToTransition(Map<String, ArrayList<Transition>> nameToTransition) {
 		this.nameToTransition = nameToTransition;
 	}
 	
@@ -65,7 +65,7 @@ public class TransitionSystem implements Serializable{
         this.setTransitionNames(new ArrayList<String>());
         this.setStateNames(new ArrayList<String>());
         this.setNameToState(new HashMap<String, State>());
-        this.setNameToTransition(new HashMap<String, Transition>());
+        this.setNameToTransition(new HashMap<String, ArrayList<Transition>>());
         try {
         	br = new BufferedReader(new InputStreamReader(new FileInputStream(pfaFile), "ISO-8859-1"));
         	String[] splitLine = br.readLine().toString().split(splitForStates);
@@ -126,11 +126,46 @@ public class TransitionSystem implements Serializable{
         				splitLine = br.readLine().split("<");
         			}
         			tempTransition.setProbability(Float.valueOf(splitLine[1].substring(12, splitLine[1].length())));
-        			// Sets the probability of current transition 
-        			this.nameToTransition.put(tempLabel, tempTransition);
-        			ArrayList<Transition> tempTransitionList = tempTransition.getSource().getTransitions();
-        			tempTransitionList.add(tempTransition);
-        			tempTransition.getSource().setTransitions(tempTransitionList);
+        			// Sets the probability of current transition
+        			if (this.nameToTransition.containsKey(tempLabel)){
+        				ArrayList<Transition> tempTransitionList = this.nameToTransition.get(tempLabel);
+        				tempTransitionList.add(tempTransition);
+        				this.nameToTransition.put(tempLabel, tempTransitionList);
+        				// If there already exists a transition with the same name in the transition system,
+        				// add the current transition to the list of transitions derived from that name
+        				
+        			}
+        			else{
+        				ArrayList<Transition> tempTransitionList = new ArrayList<Transition>();
+        				tempTransitionList.add(tempTransition);
+        				this.nameToTransition.put(tempLabel, tempTransitionList);
+        				// else create a new entry for this transition name
+        			}
+        			State sourceState = tempTransition.getSource();
+        			State targetState = tempTransition.getTarget();
+        			if (sourceState.getTransitionsTo().containsKey(tempLabel)){
+        				sourceState.addTransitionTo(tempTransition);
+        				// If there already exists a transition with the same name from the source state,
+        				// add the current transition to the list of transitions derived from that name
+        			}
+        			else{
+        				ArrayList<Transition> tempTransitionList = new ArrayList<Transition>();
+        				tempTransitionList.add(tempTransition);
+        				sourceState.transitionsTo.put(tempLabel, tempTransitionList);
+        				// else create a new entry for this transition name
+        			}
+        			
+        			if (targetState.getTransitionsFrom().containsKey(tempLabel)){
+        				targetState.addTransitionFrom(tempTransition);
+        				// If there already exists a transition with the same name towards the target state,
+        				// add the current transition to the list of transitions derived from that name
+        			}
+        			else{
+        				ArrayList<Transition> tempTransitionList = new ArrayList<Transition>();
+        				tempTransitionList.add(tempTransition);
+        				targetState.transitionsFrom.put(tempLabel, tempTransitionList);
+        				// else create a new entry for this transition name
+        			}
         		}
         		splitLine = br.readLine().toString().split(splitForTransitions);
         		// read next line so while loop continues
@@ -158,25 +193,27 @@ public class TransitionSystem implements Serializable{
 		}
 		System.out.println("And the following transitions:");
 		for (int i = 0; i < this.transitionNames.size(); i++){
-			System.out.print(this.nameToTransition.get(transitionNames.get(i)).getSource().getLabel());
-			System.out.print(" is linked to ");
-			System.out.print(this.nameToTransition.get(transitionNames.get(i)).getTarget().getLabel());
-			System.out.print(" via ");
-			System.out.print(this.nameToTransition.get(transitionNames.get(i)).getLabel());
-			System.out.print(" with probability ");
-			System.out.println(this.nameToTransition.get(transitionNames.get(i)).getProbability());
-		}
-	}
-	public void printStatesWithTransitions(){
-		System.out.println("The states and their corresponding transitions are: ");
-		for (int i = 0; i < this.stateNames.size(); i++){
-			System.out.println(this.nameToState.get(stateNames.get(i)).getLabel()+" has the following transitions:");
-			for (int j = 0; j < this.nameToState.get(stateNames.get(i)).getTransitions().size(); j++){
-				System.out.print(this.nameToState.get(stateNames.get(i)).getTransitions().get(j).getLabel());
-				System.out.print(" linking to ");
-				System.out.println(this.nameToState.get(stateNames.get(i)).getTransitions().get(j).getTarget().getLabel());
+			for (int j = 0; j < this.nameToTransition.get(this.transitionNames.get(i)).size(); j++){
+				System.out.print(this.nameToTransition.get(transitionNames.get(i)).get(j).getSource().getLabel());
+				System.out.print(" is linked to ");
+				System.out.print(this.nameToTransition.get(transitionNames.get(i)).get(j).getTarget().getLabel());
+				System.out.print(" via ");
+				System.out.print(this.nameToTransition.get(transitionNames.get(i)).get(j).getLabel());
+				System.out.print(" with probability ");
+				System.out.println(this.nameToTransition.get(transitionNames.get(i)).get(j).getProbability());
 			}
-			System.out.println("");
+
 		}
+		
 	}
+	public Map<String, Float> containsSequence (ArrayList<String> sequence){
+		Map<String, Float> result = new HashMap<String, Float>();
+		if (this.getTransitionNames().contains(sequence.get(0))){
+			for (int counter = 0; counter < this.getNameToTransition().get(sequence.get(0)).size(); counter++){
+				
+			}
+		}
+		return null;
+	}
+	
 }

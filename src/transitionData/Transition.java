@@ -1,6 +1,7 @@
 package transitionData;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Transition implements Serializable{
 	public State source;
@@ -41,7 +42,6 @@ public class Transition implements Serializable{
 	public void setProbability(float probability) {
 		this.probability = probability;
 	}
-	
 	
 	
 }

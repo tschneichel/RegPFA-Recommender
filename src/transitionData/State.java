@@ -2,35 +2,70 @@ package transitionData;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import pfa_elements.transitionOld;
 
 public class State implements Serializable {
-	private boolean isStart;
 	private String label;
-	private ArrayList<Transition> transitions;
+	public Map<String, ArrayList<Transition>> transitionsTo = new HashMap<String, ArrayList<Transition>>();
+	public Map<String, ArrayList<Transition>> transitionsFrom = new HashMap<String, ArrayList<Transition>>();
 	
 	public State(){
-		this.setIsStart(false);
-		this.setTransitions(new ArrayList<Transition>());
+		this.setTransitionsFrom(new HashMap<String, ArrayList<Transition>>());
+		this.setTransitionsTo(new HashMap<String, ArrayList<Transition>>());
 	}
 	
-	public boolean getIsStart() {
-		return isStart;
-	}
-	public void setIsStart(boolean isStart) {
-		this.isStart = isStart;
-	}
+	
 	public String getLabel() {
 		return label;
 	}
 	public void setLabel(String label) {
 		this.label = label;
 	}
-	public ArrayList<Transition> getTransitions() {
-		return transitions;
+	
+
+
+	public Map<String, ArrayList<Transition>> getTransitionsTo() {
+		return transitionsTo;
 	}
-	public void setTransitions(ArrayList<Transition> transitions) {
-		this.transitions = transitions;
+
+
+	public void setTransitionsTo(Map<String, ArrayList<Transition>> transitionsTo) {
+		this.transitionsTo = transitionsTo;
 	}
+
+
+	public Map<String, ArrayList<Transition>> getTransitionsFrom() {
+		return transitionsFrom;
+	}
+
+
+	public void setTransitionsFrom(Map<String, ArrayList<Transition>> transitionsFrom) {
+		this.transitionsFrom = transitionsFrom;
+	}
+	
+	public void addTransitionTo (Transition transition){
+		ArrayList<Transition> newList = this.getTransitionsTo().get(transition.getLabel());
+		newList.add(transition);
+		this.transitionsTo.put(transition.getLabel(), newList);
+	}
+	
+	public void addTransitionFrom (Transition transition){
+		ArrayList<Transition> newList = this.getTransitionsFrom().get(transition.getLabel());
+		newList.add(transition);
+		this.transitionsFrom.put(transition.getLabel(), newList);
+	}
+	
+	public boolean containsSequence (ArrayList<String> sequence){
+		if (sequence.isEmpty()){
+			return true;
+		}
+		if (this.getTransitionsTo().containsKey(sequence.get(0))){
+			
+		}
+		return containsSequence (new ArrayList<String> (sequence.subList(1, sequence.size()-1)));
+	}
+	
 }
