@@ -8,7 +8,7 @@ public class Transition implements Serializable{
 	public State target;
 	public String label;
 	public int count;
-	public float probability;
+	public Double probability;
 	
 	
 	
@@ -36,10 +36,10 @@ public class Transition implements Serializable{
 	public void setCount(int count) {
 		this.count = count;
 	}
-	public float getProbability() {
+	public Double getProbability() {
 		return probability;
 	}
-	public void setProbability(float probability) {
+	public void setProbability(Double probability) {
 		this.probability = probability;
 	}
 	

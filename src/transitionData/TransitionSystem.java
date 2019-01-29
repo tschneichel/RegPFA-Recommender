@@ -125,7 +125,7 @@ public class TransitionSystem implements Serializable{
         				}
         				splitLine = br.readLine().split("<");
         			}
-        			tempTransition.setProbability(Float.valueOf(splitLine[1].substring(12, splitLine[1].length())));
+        			tempTransition.setProbability(Double.valueOf(splitLine[1].substring(12, splitLine[1].length())));
         			// Sets the probability of current transition
         			if (this.nameToTransition.containsKey(tempLabel)){
         				ArrayList<Transition> tempTransitionList = this.nameToTransition.get(tempLabel);
@@ -206,12 +206,34 @@ public class TransitionSystem implements Serializable{
 		}
 		
 	}
-	public Map<String, Float> containsSequence (ArrayList<String> sequence){
-		Map<String, Float> result = new HashMap<String, Float>();
+	public ArrayList<Recommendation> getRecommendations (ArrayList<String> sequence){
+		// This method creates a list of all possible recommendations for the next transition after a certain sequence of transitions already occured 
+		// based on a single transition system
+		ArrayList<Recommendation> result = new ArrayList<Recommendation>();
+		// pre-creating the return element
 		if (this.getTransitionNames().contains(sequence.get(0))){
-			for (int counter = 0; counter < this.getNameToTransition().get(sequence.get(0)).size(); counter++){
+			// If the first transition name in the sequence exists in the transition system
+			for (Transition transition : this.getNameToTransition().get(sequence.get(0))){
+				// iterate over all transitions of that name
+				Double probability = transition.getProbability();
+				if (sequence.size() == 1){
+					ArrayList<Recommendation> recommendations = transition.getTarget().getFinalRecommendations(probability);
+					result.addAll(recommendations);
+				}
+				else {
+					ArrayList<Recommendation> recommendations = transition.getTarget().getRecommendations(new ArrayList<String> (sequence.subList(1, sequence.size()-1)), probability);
+					// and check whether it's possible to move through the transition system by following the sequence of transitions.
+					result.addAll(recommendations);
+				}
+				// TODO: Check whether addAll does what's expected (add all entries of ArrayList to another ArrayList)
 				
+				// all possible next transitions and their probabilities are stored in result
 			}
+			for (Recommendation recommendation : result){
+				recommendation.setProbability(recommendation.getProbability()+sequence.size());
+			}
+			// Since longer sequences of transitions are weighed more heavily, inflate the probability by adding the length of the sequence
+			return (result);
 		}
 		return null;
 	}

@@ -2,19 +2,21 @@ package transitionData;
 
 public class Recommendation {
 	public String nextTransition;
-	public Float probability;
+	public Double probability;
 	public String getNextTransition() {
 		return nextTransition;
 	}
 	public void setNextTransition(String nextTransition) {
 		this.nextTransition = nextTransition;
 	}
-	public Float getProbability() {
+	public Double getProbability() {
 		return probability;
 	}
-	public void setProbability(Float probability) {
-		this.probability = probability;
+	public void setProbability(double d) {
+		this.probability = d;
 	}
 	
-	
+	public void print(){
+		System.out.println("Recommend "+this.getNextTransition()+" with probability "+this.getProbability());
+	}
 }
