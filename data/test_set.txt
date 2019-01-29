@@ -222,13 +222,13 @@ b(complete)</text>
 <text>
 a(complete)</text>
 </name>
-<probability>0.0</probability></transition>
+<probability>0.8</probability></transition>
 <transition id="transition6" source="state3" target="state7">
 <name>
 <text>
 a(complete)</text>
 </name>
-<probability>0.0</probability></transition>
+<probability>0.2</probability></transition>
 <transition id="transition7" source="state4" target="state15">
 <name>
 <text>
@@ -272,7 +272,7 @@ e(complete)</text>
 <text>
 e(complete)</text>
 </name>
-<probability>0.0</probability></transition>
+<probability>0.3</probability></transition>
 <transition id="transition12" source="state7" target="state12">
 <name>
 <text>
@@ -284,13 +284,13 @@ c(complete)</text>
 <position x="42.5" y="236.0"/>
 <position x="42.5" y="291.0"/>
 </graphics>
-<probability>0.0</probability></transition>
+<probability>0.4</probability></transition>
 <transition id="transition13" source="state7" target="state1">
 <name>
 <text>
 d(complete)</text>
 </name>
-<probability>0.0</probability></transition>
+<probability>0.25</probability></transition>
 <transition id="transition14" source="state7" target="state13">
 <name>
 <text>
@@ -302,7 +302,7 @@ b(complete)</text>
 <position x="127.0" y="236.0"/>
 <position x="193.0" y="291.0"/>
 </graphics>
-<probability>0.0</probability></transition>
+<probability>0.05</probability></transition>
 <transition id="transition15" source="state7" target="state4">
 <name>
 <text>
@@ -332,7 +332,7 @@ h(complete)</text>
 <position x="149.5" y="401.0"/>
 <position x="149.5" y="456.0"/>
 </graphics>
-<probability>0.0</probability></transition>
+<probability>0.3</probability></transition>
 <transition id="transition18" source="state9" target="state12">
 <name>
 <text>
@@ -344,7 +344,7 @@ c(complete)</text>
 <position x="27.5" y="236.0"/>
 <position x="27.5" y="291.0"/>
 </graphics>
-<probability>0.0</probability></transition>
+<probability>0.1</probability></transition>
 <transition id="transition19" source="state9" target="state4">
 <name>
 <text>
@@ -356,13 +356,13 @@ c(complete)</text>
 <position x="115.0" y="236.0"/>
 <position x="115.0" y="291.0"/>
 </graphics>
-<probability>0.0</probability></transition>
+<probability>0.5</probability></transition>
 <transition id="transition20" source="state9" target="state1">
 <name>
 <text>
 d(complete)</text>
 </name>
-<probability>0.0</probability></transition>
+<probability>0.05</probability></transition>
 <transition id="transition21" source="state9" target="state13">
 <name>
 <text>
@@ -374,7 +374,7 @@ b(complete)</text>
 <position x="253.5" y="236.0"/>
 <position x="253.5" y="291.0"/>
 </graphics>
-<probability>0.0</probability></transition>
+<probability>0.05</probability></transition>
 <transition id="transition22" source="state9" target="state4">
 <name>
 <text>

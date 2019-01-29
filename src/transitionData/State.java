@@ -65,7 +65,7 @@ public class State implements Serializable {
 		if (this.getTransitionsTo().containsKey(sequence.get(0))){
 			
 		}
-		return containsSequence (new ArrayList<String> (sequence.subList(1, sequence.size()-1)));
+		return containsSequence (new ArrayList<String> (sequence.subList(1, sequence.size())));
 	}
 
 
@@ -110,7 +110,7 @@ public class State implements Serializable {
 				Double new_probability = transition.getProbability() * probability;
 				// Probability to leave this state via current transition equals probability to reach this state with current sub-sequence of transitions
 				// multiplied by probability of current transition to occur starting from this state 
-				ArrayList<Recommendation> recommendations = transition.getTarget().getRecommendations(new ArrayList<String> (sequence.subList(1, sequence.size()-1)), new_probability);
+				ArrayList<Recommendation> recommendations = transition.getTarget().getRecommendations(new ArrayList<String> (sequence.subList(1, sequence.size())), new_probability);
 				// recursive call of this function. The first element of sequence was removed and the probability was altered
 				result.addAll(recommendations);
 				

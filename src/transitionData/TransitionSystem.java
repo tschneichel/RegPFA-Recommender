@@ -221,7 +221,7 @@ public class TransitionSystem implements Serializable{
 					result.addAll(recommendations);
 				}
 				else {
-					ArrayList<Recommendation> recommendations = transition.getTarget().getRecommendations(new ArrayList<String> (sequence.subList(1, sequence.size()-1)), probability);
+					ArrayList<Recommendation> recommendations = transition.getTarget().getRecommendations(new ArrayList<String> (sequence.subList(1, sequence.size())), probability);
 					// and check whether it's possible to move through the transition system by following the sequence of transitions.
 					result.addAll(recommendations);
 				}
@@ -229,10 +229,7 @@ public class TransitionSystem implements Serializable{
 				
 				// all possible next transitions and their probabilities are stored in result
 			}
-			for (Recommendation recommendation : result){
-				recommendation.setProbability(recommendation.getProbability()+sequence.size());
-			}
-			// Since longer sequences of transitions are weighed more heavily, inflate the probability by adding the length of the sequence
+
 			return (result);
 		}
 		return null;
