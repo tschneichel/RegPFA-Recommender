@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import pfa_elements.transitionOld;
+import recommendationData.Recommendation;
 
 public class State implements Serializable {
 	private String label;
@@ -132,16 +133,15 @@ public class State implements Serializable {
 			// Store the names of all possible transitions as an ArrayList of Strings
 			for (String transitionName : allTransitions){
 				// Iterate over all possible transitions
-				Recommendation recommendation = new Recommendation();
-				recommendation.setNextTransition(transitionName);
-				// Create a new recommendation with the name of the current transition
 				Double totalProbability = 0.0;
 				for (Transition transition : this.getTransitionsTo().get(transitionName)){
 					totalProbability += transition.getProbability();
 				}
-				recommendation.setProbability(totalProbability * probability);
+				Double recommendationProbability = totalProbability * probability;
 				// calculate the probability of said transition to occur by summing up the probabilities to leave the current state
 				// via this transition and then multiply by the probability to reach this state with the initial sequence
+				Recommendation recommendation = new Recommendation(recommendationProbability, transitionName);
+				// Save next transition name as well as the aforementioned probability as a recommendation
 				result.add(recommendation);
 				// add the recommendation to result
 			}
