@@ -18,7 +18,12 @@ public class MainAnalyzer {
             ex.printStackTrace();
         }
         // reads allSystems.data as an object file and stores its content on allSystemsList
-		TransitionSystem newSystem = new TransitionSystem();
+        TransitionFrequencyList allTransitions = new TransitionFrequencyList();
+        //TODO: Create Input / Output Stream for this as well
+		TransitionSystem newSystem = new TransitionSystem(allTransitions);
+		allTransitions.sort();
+		allTransitions.print();
+		// sorts the list of all transitions by the frequency of their appearance after the new transition system was read
 		newSystem.printWholeSystem();
 		System.out.println("");
 		allSystemsList.getAllSystems().add(newSystem);

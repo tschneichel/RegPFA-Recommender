@@ -51,7 +51,7 @@ public class TransitionSystem implements Serializable{
 		this.transitionNames = transitionNames;
 	}
 
-	public TransitionSystem(){
+	public TransitionSystem(TransitionFrequencyList allTransitions){
 		String pfaFile = "data/test_set2.txt";
     	// ToDo: Ultimately, the file needs to be read from the JAR's location. Since we don't have a JAR currently,
     	// the file source used above has to be altered to suit the actual location
@@ -165,6 +165,16 @@ public class TransitionSystem implements Serializable{
         				tempTransitionList.add(tempTransition);
         				targetState.transitionsFrom.put(tempLabel, tempTransitionList);
         				// else create a new entry for this transition name
+        			}
+        			if (allTransitions.getLabelToPosition().containsKey(tempLabel)){
+        				allTransitions.getAllFrequencies().get(allTransitions.getLabelToPosition().get(tempLabel)).incrementFrequency();
+        				// if the current transition was already encountered in any system, increase its frequency by 1
+        			}
+        			else {
+        				allTransitions.getAllFrequencies().add(new TransitionFrequency(tempLabel, 1));
+        				// else create a new entry for it in the list of all transitions and their respective frequencies
+        				allTransitions.getLabelToPosition().put(tempLabel, allTransitions.getAllFrequencies().size()-1);
+        				// as well as in the map of transition names to their positions in the list above
         			}
         		}
         		splitLine = br.readLine().toString().split(splitForTransitions);
