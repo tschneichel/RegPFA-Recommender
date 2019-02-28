@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import pfa_elements.transitionOld;
 import recommendationData.Recommendation;
 
 public class State implements Serializable {
