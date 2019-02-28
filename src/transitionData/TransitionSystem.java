@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import recommendationData.Recommendation;
+
 public class TransitionSystem implements Serializable{
 	public Map<String, ArrayList<Transition>> nameToTransition = new HashMap<String, ArrayList<Transition>>();
 	public Map<String, State> nameToState = new HashMap<String, State>();
