@@ -1,8 +1,10 @@
-package transitionData;
+package recommendationData;
 
 public class Recommendation {
 	public String nextTransition;
 	public Double probability;
+	
+	
 	public String getNextTransition() {
 		return nextTransition;
 	}
@@ -18,5 +20,10 @@ public class Recommendation {
 	
 	public void print(){
 		System.out.println("Recommend "+this.getNextTransition()+" with probability "+this.getProbability());
+	}
+	
+	public Recommendation(Double probability, String nextTransition){
+		this.probability = probability;
+		this.nextTransition = nextTransition;
 	}
 }
