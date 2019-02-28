@@ -109,23 +109,21 @@ public class TransitionSystem implements Serializable{
         			}
         			// skip two lines
         			splitLine = br.readLine().split("<");
-        			// read next line contains the label of the transition
+        			// read next line contains the label and probability of the transition
         			String tempLabel = splitLine[0];
+        			int splitIndicator = tempLabel.lastIndexOf('[')+1;
+        			// probability will be of the form [value], so finding the position of the last "[" will indicate where probability begins
+        			Double probability = Double.valueOf(tempLabel.substring(splitIndicator, tempLabel.length()-1));
+        			// transform probability into a Double and store it
+        			tempLabel = tempLabel.substring(0, splitIndicator-2);
+        			// cut the probability off from the transition name
         			tempTransition.setLabel(tempLabel);
         			// add the label to the transition
-        			transitionNames.add(tempLabel);
-        			// and to the list of all transition names
-        			br.readLine();
-        			// skip another line
-        			splitLine = br.readLine().split("<");
-        			if (splitLine[1].equals("graphics>")){
-        				splitLine = br.readLine().split("<");
-        				while (!splitLine[1].equals("/graphics>")){
-        					splitLine = br.readLine().split("<");
-        				}
-        				splitLine = br.readLine().split("<");
+        			if (!transitionNames.contains(tempLabel)){
+        				transitionNames.add(tempLabel);
         			}
-        			tempTransition.setProbability(Double.valueOf(splitLine[1].substring(12, splitLine[1].length())));
+        			// and to the list of all transition names
+        			tempTransition.setProbability(probability);
         			// Sets the probability of current transition
         			if (this.nameToTransition.containsKey(tempLabel)){
         				ArrayList<Transition> tempTransitionList = this.nameToTransition.get(tempLabel);

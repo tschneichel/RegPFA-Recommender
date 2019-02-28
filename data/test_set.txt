@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?><tsml label="bigger-example.mxml" layout="true">
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<tsml label="bigger-example.mxml" layout="true">
 <state id="state1">
 <name>
 <text>
 s0</text>
 </name>
 <graphics>
-<position x="213.5" y="126.0"/>
+<position x="251.0" y="236.0"/>
 <dimension x="50.0" y="30.0"/>
 <fill color="#c0c0c0"/>
 </graphics>
@@ -16,7 +17,7 @@ s0</text>
 s1</text>
 </name>
 <graphics>
-<position x="149.0" y="511.0"/>
+<position x="263.5" y="511.0"/>
 <dimension x="50.0" y="30.0"/>
 <fill color="#c0c0c0"/>
 </graphics>
@@ -27,7 +28,7 @@ s1</text>
 s2</text>
 </name>
 <graphics>
-<position x="159.0" y="16.0"/>
+<position x="264.0" y="126.0"/>
 <dimension x="50.0" y="30.0"/>
 <fill color="#c0c0c0"/>
 </graphics>
@@ -38,7 +39,7 @@ s2</text>
 s3</text>
 </name>
 <graphics>
-<position x="106.0" y="346.0"/>
+<position x="225.5" y="181.0"/>
 <dimension x="50.0" y="30.0"/>
 <fill color="#c0c0c0"/>
 </graphics>
@@ -49,7 +50,7 @@ s3</text>
 s4</text>
 </name>
 <graphics>
-<position x="223.5" y="456.0"/>
+<position x="190.5" y="346.0"/>
 <dimension x="50.0" y="30.0"/>
 <fill color="#c0c0c0"/>
 </graphics>
@@ -60,7 +61,7 @@ s4</text>
 s5</text>
 </name>
 <graphics>
-<position x="201.5" y="181.0"/>
+<position x="195.0" y="291.0"/>
 <dimension x="50.0" y="30.0"/>
 <fill color="#c0c0c0"/>
 </graphics>
@@ -71,7 +72,7 @@ s5</text>
 s6</text>
 </name>
 <graphics>
-<position x="126.5" y="71.0"/>
+<position x="258.0" y="401.0"/>
 <dimension x="50.0" y="30.0"/>
 <fill color="#c0c0c0"/>
 </graphics>
@@ -82,7 +83,7 @@ s6</text>
 s7</text>
 </name>
 <graphics>
-<position x="197.5" y="236.0"/>
+<position x="296.0" y="456.0"/>
 <dimension x="50.0" y="30.0"/>
 <fill color="#c0c0c0"/>
 </graphics>
@@ -93,7 +94,7 @@ s7</text>
 s8</text>
 </name>
 <graphics>
-<position x="191.5" y="71.0"/>
+<position x="320.5" y="346.0"/>
 <dimension x="50.0" y="30.0"/>
 <fill color="#c0c0c0"/>
 </graphics>
@@ -104,7 +105,7 @@ s8</text>
 s9</text>
 </name>
 <graphics>
-<position x="222.5" y="401.0"/>
+<position x="154.5" y="71.0"/>
 <dimension x="50.0" y="30.0"/>
 <fill color="#c0c0c0"/>
 </graphics>
@@ -115,7 +116,7 @@ s9</text>
 s10</text>
 </name>
 <graphics>
-<position x="153.0" y="291.0"/>
+<position x="60.5" y="346.0"/>
 <dimension x="50.0" y="30.0"/>
 <fill color="#c0c0c0"/>
 </graphics>
@@ -126,7 +127,7 @@ s10</text>
 s11</text>
 </name>
 <graphics>
-<position x="26.0" y="346.0"/>
+<position x="231.0" y="456.0"/>
 <dimension x="50.0" y="30.0"/>
 <fill color="#c0c0c0"/>
 </graphics>
@@ -137,7 +138,7 @@ s11</text>
 s12</text>
 </name>
 <graphics>
-<position x="236.0" y="346.0"/>
+<position x="255.5" y="346.0"/>
 <dimension x="50.0" y="30.0"/>
 <fill color="#c0c0c0"/>
 </graphics>
@@ -148,7 +149,7 @@ s12</text>
 s13</text>
 </name>
 <graphics>
-<position x="171.0" y="346.0"/>
+<position x="166.0" y="456.0"/>
 <dimension x="50.0" y="30.0"/>
 <fill color="#c0c0c0"/>
 </graphics>
@@ -159,7 +160,7 @@ s13</text>
 s14</text>
 </name>
 <graphics>
-<position x="109.5" y="401.0"/>
+<position x="154.5" y="16.0"/>
 <dimension x="50.0" y="30.0"/>
 <fill color="#c0c0c0"/>
 </graphics>
@@ -170,7 +171,29 @@ s14</text>
 s15</text>
 </name>
 <graphics>
-<position x="109.0" y="456.0"/>
+<position x="125.5" y="346.0"/>
+<dimension x="50.0" y="30.0"/>
+<fill color="#c0c0c0"/>
+</graphics>
+</state>
+<state id="state17">
+<name>
+<text>
+s16</text>
+</name>
+<graphics>
+<position x="193.0" y="401.0"/>
+<dimension x="50.0" y="30.0"/>
+<fill color="#c0c0c0"/>
+</graphics>
+</state>
+<state id="state18">
+<name>
+<text>
+s17</text>
+</name>
+<graphics>
+<position x="260.0" y="291.0"/>
 <dimension x="50.0" y="30.0"/>
 <fill color="#c0c0c0"/>
 </graphics>
@@ -178,301 +201,387 @@ s15</text>
 <transition id="transition1" source="state1" target="state6">
 <name>
 <text>
-c(complete)</text>
+f(complete) [1.0]</text>
 </name>
-<probability>0.0</probability></transition>
-<transition id="transition2" source="state1" target="state15">
+</transition>
+<transition id="transition2" source="state1" target="state18">
 <name>
 <text>
-c(complete)</text>
+f(complete) [0.3378]</text>
+</name>
+</transition>
+<transition id="transition3" source="state1" target="state2">
+<name>
+<text>
+h(complete) [0.0042]</text>
 </name>
 <graphics>
-<position x="142.5" y="181.0"/>
-<position x="66.0" y="236.0"/>
-<position x="66.0" y="291.0"/>
-<position x="66.0" y="346.0"/>
+<position x="305.5" y="291.0"/>
+<position x="360.5" y="346.0"/>
+<position x="360.5" y="401.0"/>
+<position x="360.5" y="456.0"/>
 </graphics>
-<probability>0.0</probability></transition>
-<transition id="transition3" source="state1" target="state10">
+</transition>
+<transition id="transition4" source="state3" target="state7">
 <name>
 <text>
-c(complete)</text>
+c(complete) [0.1113]</text>
 </name>
 <graphics>
-<position x="252.5" y="181.0"/>
-<position x="279.5" y="236.0"/>
-<position x="279.5" y="291.0"/>
-<position x="302.0" y="346.0"/>
+<position x="402.5" y="181.0"/>
+<position x="402.5" y="236.0"/>
+<position x="402.5" y="291.0"/>
+<position x="424.0" y="346.0"/>
 </graphics>
-<probability>0.0</probability></transition>
-<transition id="transition4" source="state1" target="state10">
+</transition>
+<transition id="transition5" source="state3" target="state17">
 <name>
 <text>
-b(complete)</text>
+c(complete) [0.0074]</text>
 </name>
 <graphics>
-<position x="245.0" y="181.0"/>
-<position x="272.0" y="236.0"/>
-<position x="272.0" y="291.0"/>
-<position x="294.5" y="346.0"/>
+<position x="377.5" y="181.0"/>
+<position x="377.5" y="236.0"/>
+<position x="377.5" y="291.0"/>
+<position x="405.5" y="346.0"/>
 </graphics>
-<probability>0.0</probability></transition>
-<transition id="transition5" source="state3" target="state9">
+</transition>
+<transition id="transition6" source="state3" target="state4">
 <name>
 <text>
-a(complete)</text>
-</name>
-<probability>0.8</probability></transition>
-<transition id="transition6" source="state3" target="state7">
-<name>
-<text>
-a(complete)</text>
-</name>
-<probability>0.2</probability></transition>
-<transition id="transition7" source="state4" target="state15">
-<name>
-<text>
-d(complete)</text>
-</name>
-<probability>0.0</probability></transition>
-<transition id="transition8" source="state5" target="state7">
-<name>
-<text>
-f(complete)</text>
+c(complete) [0.2674]</text>
 </name>
 <graphics>
-<position x="313.5" y="401.0"/>
-<position x="313.5" y="346.0"/>
-<position x="313.5" y="291.0"/>
-<position x="313.5" y="236.0"/>
-<position x="313.5" y="181.0"/>
-<position x="253.5" y="126.0"/>
+<position x="247.8221197019464" y="155.6504837913625"/>
 </graphics>
-<probability>0.0</probability></transition>
-<transition id="transition9" source="state5" target="state2">
+</transition>
+<transition id="transition7" source="state3" target="state7">
 <name>
 <text>
-h(complete)</text>
-</name>
-<probability>0.0</probability></transition>
-<transition id="transition10" source="state6" target="state5">
-<name>
-<text>
-e(complete)</text>
+b(complete) [0.2718]</text>
 </name>
 <graphics>
-<position x="290.5" y="236.0"/>
-<position x="328.5" y="291.0"/>
-<position x="328.5" y="346.0"/>
-<position x="328.5" y="401.0"/>
+<position x="410.0" y="181.0"/>
+<position x="410.0" y="236.0"/>
+<position x="410.0" y="291.0"/>
+<position x="431.5" y="346.0"/>
 </graphics>
-<probability>0.0</probability></transition>
-<transition id="transition11" source="state6" target="state8">
+</transition>
+<transition id="transition8" source="state3" target="state4">
 <name>
 <text>
-e(complete)</text>
-</name>
-<probability>0.3</probability></transition>
-<transition id="transition12" source="state7" target="state12">
-<name>
-<text>
-c(complete)</text>
+b(complete) [0.3534]</text>
 </name>
 <graphics>
-<position x="42.5" y="126.0"/>
-<position x="42.5" y="181.0"/>
-<position x="42.5" y="236.0"/>
-<position x="42.5" y="291.0"/>
+<position x="241.6778802980536" y="151.3495162086375"/>
 </graphics>
-<probability>0.4</probability></transition>
-<transition id="transition13" source="state7" target="state1">
+</transition>
+<transition id="transition9" source="state4" target="state12">
 <name>
 <text>
-d(complete)</text>
-</name>
-<probability>0.25</probability></transition>
-<transition id="transition14" source="state7" target="state13">
-<name>
-<text>
-b(complete)</text>
+e(complete) [0.4544]</text>
 </name>
 <graphics>
-<position x="127.0" y="126.0"/>
-<position x="127.0" y="181.0"/>
-<position x="127.0" y="236.0"/>
-<position x="193.0" y="291.0"/>
+<position x="333.5" y="236.0"/>
+<position x="333.5" y="291.0"/>
+<position x="375.5" y="346.0"/>
+<position x="375.5" y="401.0"/>
 </graphics>
-<probability>0.05</probability></transition>
-<transition id="transition15" source="state7" target="state4">
+</transition>
+<transition id="transition10" source="state4" target="state14">
 <name>
 <text>
-b(complete)</text>
+e(complete) [0.0435]</text>
 </name>
 <graphics>
-<position x="89.0" y="126.0"/>
-<position x="89.0" y="181.0"/>
-<position x="89.0" y="236.0"/>
-<position x="89.0" y="291.0"/>
+<position x="99.0" y="236.0"/>
+<position x="99.0" y="291.0"/>
+<position x="20.5" y="346.0"/>
+<position x="20.5" y="401.0"/>
 </graphics>
-<probability>0.0</probability></transition>
-<transition id="transition16" source="state8" target="state11">
+</transition>
+<transition id="transition11" source="state4" target="state8">
 <name>
 <text>
-f(complete)</text>
-</name>
-<probability>0.0</probability></transition>
-<transition id="transition17" source="state8" target="state2">
-<name>
-<text>
-h(complete)</text>
+e(complete) [0.0067]</text>
 </name>
 <graphics>
-<position x="237.0" y="291.0"/>
-<position x="276.0" y="346.0"/>
-<position x="149.5" y="401.0"/>
-<position x="149.5" y="456.0"/>
+<position x="355.5" y="236.0"/>
+<position x="355.5" y="291.0"/>
+<position x="390.5" y="346.0"/>
+<position x="390.5" y="401.0"/>
 </graphics>
-<probability>0.3</probability></transition>
-<transition id="transition18" source="state9" target="state12">
+</transition>
+<transition id="transition12" source="state4" target="state1">
 <name>
 <text>
-c(complete)</text>
+e(complete) [0.142]</text>
+</name>
+</transition>
+<transition id="transition13" source="state5" target="state17">
+<name>
+<text>
+d(complete) [0.9925]</text>
+</name>
+</transition>
+<transition id="transition14" source="state6" target="state13">
+<name>
+<text>
+d(complete) [0.0067]</text>
+</name>
+</transition>
+<transition id="transition15" source="state6" target="state9">
+<name>
+<text>
+d(complete) [0.9732]</text>
+</name>
+</transition>
+<transition id="transition16" source="state6" target="state16">
+<name>
+<text>
+b(complete) [0.0265]</text>
+</name>
+</transition>
+<transition id="transition17" source="state6" target="state5">
+<name>
+<text>
+b(complete) [0.9994]</text>
+</name>
+</transition>
+<transition id="transition18" source="state6" target="state11">
+<name>
+<text>
+b(complete) [0.0229]</text>
+</name>
+</transition>
+<transition id="transition19" source="state7" target="state12">
+<name>
+<text>
+e(complete) [0.954]</text>
+</name>
+</transition>
+<transition id="transition20" source="state7" target="state8">
+<name>
+<text>
+e(complete) [0.023]</text>
+</name>
+</transition>
+<transition id="transition21" source="state8" target="state2">
+<name>
+<text>
+h(complete) [0.4963]</text>
+</name>
+</transition>
+<transition id="transition22" source="state9" target="state7">
+<name>
+<text>
+b(complete) [0.5014]</text>
+</name>
+</transition>
+<transition id="transition23" source="state9" target="state17">
+<name>
+<text>
+b(complete) [0.3832]</text>
+</name>
+</transition>
+<transition id="transition24" source="state10" target="state16">
+<name>
+<text>
+c(complete) [0.5805]</text>
 </name>
 <graphics>
-<position x="107.5" y="126.0"/>
-<position x="27.5" y="181.0"/>
-<position x="27.5" y="236.0"/>
-<position x="27.5" y="291.0"/>
+<position x="33.5" y="126.0"/>
+<position x="33.5" y="181.0"/>
+<position x="33.5" y="236.0"/>
+<position x="33.5" y="291.0"/>
 </graphics>
-<probability>0.1</probability></transition>
-<transition id="transition19" source="state9" target="state4">
+</transition>
+<transition id="transition25" source="state10" target="state5">
 <name>
 <text>
-c(complete)</text>
+c(complete) [0.0182]</text>
 </name>
 <graphics>
-<position x="157.0" y="126.0"/>
-<position x="115.0" y="181.0"/>
-<position x="115.0" y="236.0"/>
-<position x="115.0" y="291.0"/>
+<position x="80.5" y="126.0"/>
+<position x="80.5" y="181.0"/>
+<position x="80.5" y="236.0"/>
+<position x="80.5" y="291.0"/>
 </graphics>
-<probability>0.5</probability></transition>
-<transition id="transition20" source="state9" target="state1">
+</transition>
+<transition id="transition26" source="state10" target="state11">
 <name>
 <text>
-d(complete)</text>
-</name>
-<probability>0.05</probability></transition>
-<transition id="transition21" source="state9" target="state13">
-<name>
-<text>
-b(complete)</text>
+c(complete) [0.0182]</text>
 </name>
 <graphics>
-<position x="268.5" y="126.0"/>
-<position x="268.5" y="181.0"/>
-<position x="253.5" y="236.0"/>
-<position x="253.5" y="291.0"/>
+<position x="55.0" y="126.0"/>
+<position x="55.0" y="181.0"/>
+<position x="55.0" y="236.0"/>
+<position x="55.0" y="291.0"/>
 </graphics>
-<probability>0.05</probability></transition>
-<transition id="transition22" source="state9" target="state4">
+</transition>
+<transition id="transition27" source="state10" target="state3">
 <name>
 <text>
-b(complete)</text>
+d(complete) [0.5601]</text>
+</name>
+</transition>
+<transition id="transition28" source="state10" target="state9">
+<name>
+<text>
+d(complete) [0.253]</text>
 </name>
 <graphics>
-<position x="149.5" y="126.0"/>
-<position x="107.5" y="181.0"/>
-<position x="107.5" y="236.0"/>
-<position x="107.5" y="291.0"/>
+<position x="421.5" y="126.0"/>
+<position x="421.5" y="181.0"/>
+<position x="421.5" y="236.0"/>
+<position x="421.5" y="291.0"/>
 </graphics>
-<probability>0.0</probability></transition>
-<transition id="transition23" source="state10" target="state5">
+</transition>
+<transition id="transition29" source="state10" target="state5">
 <name>
 <text>
-e(complete)</text>
-</name>
-<probability>0.0</probability></transition>
-<transition id="transition24" source="state11" target="state14">
-<name>
-<text>
-d(complete)</text>
-</name>
-<probability>0.0</probability></transition>
-<transition id="transition25" source="state11" target="state12">
-<name>
-<text>
-b(complete)</text>
-</name>
-<probability>0.0</probability></transition>
-<transition id="transition26" source="state11" target="state13">
-<name>
-<text>
-b(complete)</text>
-</name>
-<probability>0.0</probability></transition>
-<transition id="transition27" source="state11" target="state4">
-<name>
-<text>
-b(complete)</text>
-</name>
-<probability>0.0</probability></transition>
-<transition id="transition28" source="state12" target="state6">
-<name>
-<text>
-d(complete)</text>
+b(complete) [0.1869]</text>
 </name>
 <graphics>
-<position x="12.5" y="291.0"/>
-<position x="151.0" y="236.0"/>
+<position x="88.0" y="126.0"/>
+<position x="88.0" y="181.0"/>
+<position x="88.0" y="236.0"/>
+<position x="88.0" y="291.0"/>
 </graphics>
-<probability>0.0</probability></transition>
-<transition id="transition29" source="state13" target="state15">
+</transition>
+<transition id="transition30" source="state11" target="state17">
 <name>
 <text>
-d(complete)</text>
+d(complete) [0.5111]</text>
 </name>
-<probability>0.0</probability></transition>
-<transition id="transition30" source="state14" target="state15">
+</transition>
+<transition id="transition31" source="state11" target="state4">
 <name>
 <text>
-b(complete)</text>
-</name>
-<probability>0.0</probability></transition>
-<transition id="transition31" source="state14" target="state10">
-<name>
-<text>
-b(complete)</text>
-</name>
-<probability>0.0</probability></transition>
-<transition id="transition32" source="state15" target="state5">
-<name>
-<text>
-e(complete)</text>
-</name>
-<probability>0.0</probability></transition>
-<transition id="transition33" source="state15" target="state16">
-<name>
-<text>
-e(complete)</text>
-</name>
-<probability>0.0</probability></transition>
-<transition id="transition34" source="state16" target="state2">
-<name>
-<text>
-h(complete)</text>
+d(complete) [0.427]</text>
 </name>
 <graphics>
-<position x="132.03276031613694" y="481.29435613371857"/>
+<position x="114.0" y="291.0"/>
+<position x="114.0" y="236.0"/>
 </graphics>
-<probability>0.0</probability></transition>
-<transition id="transition35" source="state16" target="state2">
+</transition>
+<transition id="transition32" source="state12" target="state2">
 <name>
 <text>
-g(complete)</text>
+h(complete) [0.0365]</text>
 </name>
 <graphics>
-<position x="125.96723968386306" y="485.70564386628143"/>
+<position x="250.4784744808037" y="481.5922650795251"/>
 </graphics>
-<probability>0.0</probability></transition>
+</transition>
+<transition id="transition33" source="state12" target="state2">
+<name>
+<text>
+g(complete) [0.0067]</text>
+</name>
+<graphics>
+<position x="244.0215255191963" y="485.4077349204749"/>
+</graphics>
+</transition>
+<transition id="transition34" source="state13" target="state7">
+<name>
+<text>
+b(complete) [0.0186]</text>
+</name>
+</transition>
+<transition id="transition35" source="state13" target="state17">
+<name>
+<text>
+b(complete) [0.9567]</text>
+</name>
+</transition>
+<transition id="transition36" source="state14" target="state2">
+<name>
+<text>
+h(complete) [0.0423]</text>
+</name>
+<graphics>
+<position x="212.90754554900533" y="486.76616925403596"/>
+</graphics>
+</transition>
+<transition id="transition37" source="state14" target="state2">
+<name>
+<text>
+g(complete) [0.3747]</text>
+</name>
+<graphics>
+<position x="216.59245445099467" y="480.23383074596404"/>
+</graphics>
+</transition>
+<transition id="transition38" source="state15" target="state10">
+<name>
+<text>
+a(complete) [0.2896]</text>
+</name>
+</transition>
+<transition id="transition39" source="state16" target="state17">
+<name>
+<text>
+d(complete) [0.1603]</text>
+</name>
+</transition>
+<transition id="transition40" source="state16" target="state4">
+<name>
+<text>
+d(complete) [0.0491]</text>
+</name>
+<graphics>
+<position x="148.5" y="291.0"/>
+<position x="148.5" y="236.0"/>
+</graphics>
+</transition>
+<transition id="transition41" source="state17" target="state12">
+<name>
+<text>
+e(complete) [0.1262]</text>
+</name>
+</transition>
+<transition id="transition42" source="state17" target="state14">
+<name>
+<text>
+e(complete) [0.0582]</text>
+</name>
+</transition>
+<transition id="transition43" source="state17" target="state8">
+<name>
+<text>
+e(complete) [0.9405]</text>
+</name>
+</transition>
+<transition id="transition44" source="state18" target="state13">
+<name>
+<text>
+d(complete) [0.9799]</text>
+</name>
+</transition>
+<transition id="transition45" source="state18" target="state9">
+<name>
+<text>
+d(complete) [0.0199]</text>
+</name>
+</transition>
+<transition id="transition46" source="state18" target="state16">
+<name>
+<text>
+b(complete) [0.9999]</text>
+</name>
+</transition>
+<transition id="transition47" source="state18" target="state5">
+<name>
+<text>
+b(complete) [0.9761]</text>
+</name>
+</transition>
+<transition id="transition48" source="state18" target="state11">
+<name>
+<text>
+b(complete) [0.0238]</text>
+</name>
+</transition>
 </tsml>
