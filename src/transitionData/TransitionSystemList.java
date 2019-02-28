@@ -20,12 +20,11 @@ public class TransitionSystemList implements Serializable{
 	}
 	
 	
-	public ArrayList<Recommendation> recommendNextTransition(ArrayList<String> currentTransitions){
+	public ArrayList<Recommendation> recommendNextTransition(ArrayList<String> currentTransitions, int howMany){
+		// TODO: Make howMany flexible
 		ArrayList<Recommendation> allRecommendations = new ArrayList<Recommendation>();
 		int startingPoint = 0;
 		// start with the first transition in the given list
-		int howMany = 50;
-		// TODO: Make this flexible
 		// placeholder variable for amount of recommendatons
 		while (startingPoint < currentTransitions.size() && allRecommendations.size()<howMany){
 			// iterate over the starting point in the given list of transitions and stop when either the end of the list was reached
@@ -43,6 +42,12 @@ public class TransitionSystemList implements Serializable{
 			startingPoint++;
 		}
 		// TODO: Sum up recommendations for same transition, weight recommendations so total percentage = 100 etc
-		return allRecommendations;
+		ArrayList<Recommendation> finalResult = new ArrayList<Recommendation>();
+		if (allRecommendations.size() > howMany){
+			for (int i = 0; i < howMany; i++){
+				finalResult.add(allRecommendations.get(i));
+			}
+		}
+		return finalResult;
 	}
 }

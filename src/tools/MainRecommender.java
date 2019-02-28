@@ -22,7 +22,7 @@ public class MainRecommender {
         ArrayList<String> test = new ArrayList<String>();
         test.add("a(complete)");
         test.add("c(complete)");
-        ArrayList<Recommendation> result = allSystemsList.recommendNextTransition(test);
+        ArrayList<Recommendation> result = allSystemsList.recommendNextTransition(test, 2);
         for (Recommendation recommendation : result){
         	recommendation.print();
         }
