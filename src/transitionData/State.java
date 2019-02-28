@@ -71,6 +71,7 @@ public class State implements Serializable {
 
 
 	public ArrayList<Recommendation> getRecommendations(ArrayList<String> sequence, Double probability) {
+		ArrayList<Recommendation> result = new ArrayList<Recommendation>();
 		/*// This method generates all recommendations for a certain sequence of transitions and a given start state
 		ArrayList<Recommendation> result = new ArrayList<Recommendation>();
 		if (sequence.size() == 0){
@@ -105,7 +106,6 @@ public class State implements Serializable {
 		}
 		if (this.getTransitionsTo().containsKey(sequence.get(0))){
 			// If the next transition in the sequence is possible from this state
-			ArrayList<Recommendation> result = new ArrayList<Recommendation>();
 			for (Transition transition : this.getTransitionsTo().get(sequence.get(0))){
 				// Iterate over all transitions with that name
 				Double new_probability = transition.getProbability() * probability;
@@ -119,9 +119,8 @@ public class State implements Serializable {
 				
 				// all possible next transitions and their probabilities are stored in result
 			}
-			return (result);
 		}
-		return null;
+		return (result);	
 	}
 	
 	public ArrayList<Recommendation> getFinalRecommendations(Double probability) {

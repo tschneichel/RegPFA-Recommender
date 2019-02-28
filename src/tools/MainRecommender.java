@@ -21,11 +21,11 @@ public class MainRecommender {
         }
         // reads allSystems.data as an object file and stores its content on allSystemsList
         ArrayList<String> test = new ArrayList<String>();
-        test.add("a(complete)");
+        test.add("d(complete)");
         test.add("c(complete)");
-        test.add("b(complete)");
-        test.add("e(complete)");
-        test.add("f(complete)");
+        test.add("a(complete)");
+        //test.add("e(complete)");
+        //test.add("f(complete)");
         ArrayList<Recommendation> result = allSystemsList.recommendNextTransition(test, 50);
         for (Recommendation recommendation : result){
         	recommendation.print();

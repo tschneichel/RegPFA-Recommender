@@ -27,9 +27,9 @@ public class TransitionSystemList implements Serializable{
 		// TODO: Make howMany flexible
 		RecommendationList allRecommendations = new RecommendationList();
 		int startingPoint = 0;
+		int endPoint = currentTransitions.size();
 		// start with the first transition in the given list
-		// placeholder variable for amount of recommendatons
-		while (startingPoint < currentTransitions.size() && allRecommendations.getRecommendations().size()<howMany){
+		while (startingPoint < endPoint && allRecommendations.getRecommendations().size()<howMany){
 			// iterate over the starting point in the given list of transitions and stop when either the end of the list was reached
 			// OR enough possible following transitions were found
 			ArrayList<Recommendation> currentRecommendations = new ArrayList<Recommendation>();
@@ -37,11 +37,13 @@ public class TransitionSystemList implements Serializable{
 				currentRecommendations.addAll(currentSystem.getRecommendations(currentTransitions));
 			}
 			for (Recommendation recommendation : currentRecommendations){
-				recommendation.setProbability(recommendation.getProbability()+(currentTransitions.size()-startingPoint));
+				recommendation.setProbability(recommendation.getProbability()+currentTransitions.size());
 			}
 			// Since longer sequences of transitions are weighed more heavily, inflate the probability by adding the length of the sequence
 			allRecommendations.getRecommendations().addAll(currentRecommendations);
 			// before adding them to the lists of results
+			currentTransitions.remove(0);
+			// removing the first element of transition sequence to only search for shorter sequences now
 			startingPoint++;
 		}
 		allRecommendations.mergeRecommendations();
@@ -53,8 +55,7 @@ public class TransitionSystemList implements Serializable{
 			}
 		}
 		else finalResult = allRecommendations;
-		//finalResult.weighRecommendations();
-		//TODO: Create this method
+		finalResult.weighRecommendations();
 		return finalResult.getRecommendations();
 	}
 }
