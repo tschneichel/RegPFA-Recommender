@@ -3,6 +3,7 @@ package tools;
 import java.io.*;
 import java.util.ArrayList;
 
+import recommendationData.Recommendation;
 import transitionData.*;
 
 public class MainRecommender {
@@ -22,7 +23,10 @@ public class MainRecommender {
         ArrayList<String> test = new ArrayList<String>();
         test.add("a(complete)");
         test.add("c(complete)");
-        ArrayList<Recommendation> result = allSystemsList.recommendNextTransition(test, 2);
+        test.add("b(complete)");
+        test.add("e(complete)");
+        test.add("f(complete)");
+        ArrayList<Recommendation> result = allSystemsList.recommendNextTransition(test, 50);
         for (Recommendation recommendation : result){
         	recommendation.print();
         }

@@ -38,7 +38,6 @@ public class MainAnalyzer {
 		}
 		// stores the list as allSystems.data for further program runs
 
-		
 
 	}
 

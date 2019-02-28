@@ -21,4 +21,6 @@ public class emptyDataFile {
 		}
 		// Creates an empty transition system list for the initial stage of this program
 	}
+	
+
 }
