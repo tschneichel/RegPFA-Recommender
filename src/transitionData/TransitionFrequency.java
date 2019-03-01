@@ -1,6 +1,8 @@
 package transitionData;
 
-public class TransitionFrequency {
+import java.io.Serializable;
+
+public class TransitionFrequency implements Serializable{
 	public String label;
 	public int frequency;
 	
