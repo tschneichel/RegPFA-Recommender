@@ -55,7 +55,9 @@ public class TransitionSystemList implements Serializable{
 		allRecommendations.mergeRecommendations();
 		// Merge multiple recommendations for the same transition to just one
 		RecommendationList finalResult = new RecommendationList();
-		if (allRecommendations.getRecommendations().size() > howMany){
+		int foundNormally = allRecommendations.getRecommendations().size();
+		// store amount of recommendations found via checking for previous transitions on foundNormally
+		if (foundNormally > howMany){
 			// if more transitions were found than need to be returned
 			for (int i = 0; i < howMany; i++){
 				finalResult.getRecommendations().add(allRecommendations.getRecommendations().get(i));
@@ -63,19 +65,26 @@ public class TransitionSystemList implements Serializable{
 			// Only retain those that have the highest probability
 		}
 		else {
-			if (allRecommendations.getRecommendations().size() < howMany){
+			if (foundNormally < howMany){
 				// if fewer transitions were found than need to be returned
 				int counter = 0;
-				if (allRecommendations.getRecommendations().size() != 0){
+				if (foundNormally != 0){
 					// if at least one recommendation was found
 					while (counter < allFrequencies.getAllFrequencies().size() && (allRecommendations.getRecommendations().size() < howMany)){
 						if (!allRecommendations.getTransitionLabels().contains(allFrequencies.getAllFrequencies().get(counter).getLabel())){
-							allRecommendations.getRecommendations().add(new Recommendation(1.0, allFrequencies.getAllFrequencies().get(counter).getLabel()));
+							allRecommendations.getRecommendations().add(new Recommendation(Double.valueOf(allFrequencies.getAllFrequencies().get(counter).getFrequency()), allFrequencies.getAllFrequencies().get(counter).getLabel()));
 						}
 						counter++;
 					}
 					// only add as many transitions as needed from the sorted list of all transitions and their respective frequencies, and only
-					// those that are not already found. Probability is equal to 1 in thise case for all transitions added this way 
+					// those that are not already found. Probability is equal to their frequency for now, but will be adjusted
+					Double totalNewFrequencies = 0.0;
+					for (int i = foundNormally; i < allRecommendations.getRecommendations().size(); i++){
+						totalNewFrequencies += allRecommendations.getRecommendations().get(i).getProbability();
+					}
+					for (int i = foundNormally; i < allRecommendations.getRecommendations().size(); i++){
+						allRecommendations.getRecommendations().get(i).setProbability(allRecommendations.getRecommendations().get(i).getProbability() / totalNewFrequencies);
+					}
 
 				}
 				else {
@@ -92,7 +101,7 @@ public class TransitionSystemList implements Serializable{
 			}
 		}
 		finalResult = allRecommendations;
-		finalResult.weighRecommendations2();
+		finalResult.weighRecommendations();
 		return finalResult.getRecommendations();
 	}
 }

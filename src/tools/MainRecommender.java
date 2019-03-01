@@ -25,9 +25,9 @@ public class MainRecommender {
         }
         // reads allSystems.data as an object file and stores its content on allSystemsList
         ArrayList<String> test = new ArrayList<String>();
-       // test.add("7(complete)");
-       // test.add("c(complete)");
-        //test.add("a(complete)");
+        test.add("b(complete)");
+        test.add("c(complete)");
+        test.add("a(complete)");
         //test.add("e(complete)");
         //test.add("f(complete)");
         ArrayList<Recommendation> result = allSystemsList.recommendNextTransition(test, 3, allFrequenciesList);
