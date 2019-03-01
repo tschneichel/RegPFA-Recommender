@@ -51,8 +51,7 @@ public class TransitionSystem implements Serializable{
 		this.transitionNames = transitionNames;
 	}
 
-	public TransitionSystem(TransitionFrequencyList allTransitions){
-		String pfaFile = "data/test_set2.txt";
+	public TransitionSystem(TransitionFrequencyList allTransitions, String pfaFile){
     	// ToDo: Ultimately, the file needs to be read from the JAR's location. Since we don't have a JAR currently,
     	// the file source used above has to be altered to suit the actual location
     	// Once we have the JAR, refer to the link below for possible fixes
@@ -242,7 +241,7 @@ public class TransitionSystem implements Serializable{
 
 			return (result);
 		}
-		return null;
+		return result;
 	}
 	
 }
