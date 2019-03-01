@@ -1,5 +1,6 @@
 package transitionData;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -8,7 +9,7 @@ import java.util.Map.Entry;
 
 import recommendationData.Recommendation;
 
-public class TransitionFrequencyList {
+public class TransitionFrequencyList implements Serializable{
 	public ArrayList<TransitionFrequency> allFrequencies = new ArrayList<TransitionFrequency>();
 	public HashMap<String, Integer> labelToPosition = new HashMap<String, Integer>();
 	
@@ -28,8 +29,58 @@ public class TransitionFrequencyList {
 		this.labelToPosition = labelToPosition;
 	}
 
-	public void sort(){
+	public ArrayList<TransitionFrequency> merge (TransitionFrequencyList rightList){
+		// merge method of mergeSort for TransitionFrequencyList
+		ArrayList<TransitionFrequency> left = this.getAllFrequencies();
+		ArrayList<TransitionFrequency> right = rightList.getAllFrequencies();
+		ArrayList<TransitionFrequency> merged = new ArrayList<TransitionFrequency>();
+		while (!left.isEmpty() && !right.isEmpty()){
+			if (!(left.get(0).getFrequency() < right.get(0).getFrequency())){
+				merged.add(left.remove(0));
+			}	
+			else {
+				merged.add(right.remove(0));
+			}
+		}
+		merged.addAll(left);
+		merged.addAll(right);
+		return merged;
+	}
+	
+	public void mergeSort(){
+		// main method of mergeSort for TransitionFrequencyList
+		ArrayList<TransitionFrequency> input = this.getAllFrequencies();
+		if (input.size() != 1) {
+			ArrayList<TransitionFrequency> left = new ArrayList<TransitionFrequency>();
+			ArrayList<TransitionFrequency> right = new ArrayList<TransitionFrequency>();
+			boolean switcher = true;
+			while (!input.isEmpty()){
+				if (switcher){
+					left.add(input.remove(0));
+				}
+				else {
+					right.add(input.remove(0));
+				}
+				switcher = !switcher;
+			}
+			TransitionFrequencyList leftList = new TransitionFrequencyList();
+			TransitionFrequencyList rightList = new TransitionFrequencyList();
+			leftList.setAllFrequencies(left);
+			rightList.setAllFrequencies(right);
+			leftList.mergeSort();
+			rightList.mergeSort();
+			input.addAll(leftList.merge(rightList));
+		}
+	}
+	
+	/**
+	 * Method was removed for the time being due to runtime being O(n²) in more than just few cases. Rather stick with merge sort.
+	 * TODO: possibly adapt mergeSort to find a large pre-sorted list to the left first and consider it merged already?
+	 */
+	/*public void sort(){
 		// Sorts the list of all transitions in a way that is efficient for repeated program runs
+		// This is under the assumption that new transition systems likely won't change the frequencies of already encountered transitions
+		// in a meaningful way after a certain point. If that holds true, a huge amount of elements "to the left" of the list are already sorted
 		ArrayList<TransitionFrequency> frequencies = this.getAllFrequencies();
 		boolean alreadySorted = true;
 		int divider = 0;
@@ -66,27 +117,15 @@ public class TransitionFrequencyList {
 			}
 		}
 		this.updateMap();
-	}
+	}*/
 	
 	public void updateMap(){
-		// Updates the map with new positions respective to list of transitions after sorting
-        for (Entry<String, Integer> entry : this.getLabelToPosition().entrySet()) {
-        	// Iterate over all entries of the map
-            if (!(entry.getKey()==this.getAllFrequencies().get(entry.getValue()).getLabel())) {
-            	// if the label of the frequency at the position of the value of the current entry does not match the key of the current entry
-            	int i = 0;
-            	boolean found = false;
-            	while (i < this.getAllFrequencies().size() && !found){
-            		if (entry.getKey()==this.getAllFrequencies().get(i).getLabel()) {
-            			this.getLabelToPosition().put(entry.getKey(), i);
-            			found = true;
-            		}
-            		i++;
-            	}
-            	// Iterate over the whole list until you find the position i of the current entries key and change the keys value to i. 
-            }
-        }
+		// Simply iterates over the list of transitions and their frequencies and puts the correct positions in the HashMap for future runs
+		for (int i = 0; i < this.getAllFrequencies().size(); i++){
+			this.getLabelToPosition().put(this.getAllFrequencies().get(i).getLabel(), i);
+		}
 	}
+	
 	public void print(){
 		System.out.println(this.getLabelToPosition());
 		for (int i = 0; i < this.getAllFrequencies().size(); i++){
