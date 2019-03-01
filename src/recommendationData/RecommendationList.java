@@ -2,8 +2,12 @@ package recommendationData;
 
 import java.util.ArrayList;
 
+import transitionData.TransitionFrequency;
+import transitionData.TransitionFrequencyList;
+
 public class RecommendationList {
 	ArrayList<Recommendation> recommendations = new ArrayList<Recommendation>();
+	ArrayList<String> transitionLabels = new ArrayList<String>();
 
 	public ArrayList<Recommendation> getRecommendations() {
 		return recommendations;
@@ -13,18 +17,29 @@ public class RecommendationList {
 		this.recommendations = recommendations;
 	}
 	
+	public ArrayList<String> getTransitionLabels() {
+		return transitionLabels;
+	}
+
+	public void setTransitionLabels(ArrayList<String> transitionLabels) {
+		this.transitionLabels = transitionLabels;
+	}
+
 	public void mergeRecommendations(){
 		// Merges probabilities for transitions with the same name
 		ArrayList<RecommendationCluster> clusters = this.createClusters();
 		// creates clusters
 		ArrayList<Recommendation> finalResult = new ArrayList<Recommendation>();
+		ArrayList<String> transitionNames = new ArrayList<String>();
 		// pre-create variable for result
 		for (RecommendationCluster cluster : clusters){
 			cluster.clusterToSingle();
 			finalResult.add(cluster.getFinalRecommendation());
+			transitionNames.add(cluster.getLabel());
 		}
-		// calculate the final recommendations for each cluster and store them on finalResult
+		// calculate the final recommendations for each cluster and store them on finalResult, also store the name of each transition in a list
 		this.recommendations = finalResult;
+		this.transitionLabels = transitionNames;
 	}
 	
 	public ArrayList<RecommendationCluster> createClusters(){
@@ -66,5 +81,66 @@ public class RecommendationList {
 			recommendation.setProbability(Math.exp(recommendation.getProbability()) / total);
 		}
 		// divides e^(probability) / total for each probability of distinct transitions and stores the result as final probability
+		this.mergeSort();
+		// sorts the recommendations in descending order
+	}
+	
+	public void weighRecommendations2(){
+		// This method weighs the recommendations as percentages
+				Double total = 0.0;
+				for (Recommendation recommendation : this.getRecommendations()){
+					total += recommendation.getProbability();
+				}
+				// calculates the sum probabilities for each probability of distinct transitions and stores it on total
+				for (Recommendation recommendation : this.getRecommendations()){
+					recommendation.setProbability(recommendation.getProbability() / total);
+				}
+				// divides probability / total for each probability of distinct transitions and stores the result as final probability
+				this.mergeSort();
+				// sorts the recommendations in descending order
+	}
+	
+	public ArrayList<Recommendation> merge (RecommendationList rightList){
+		// merge method of mergeSort for RecommendationList
+		ArrayList<Recommendation> left = this.getRecommendations();
+		ArrayList<Recommendation> right = rightList.getRecommendations();
+		ArrayList<Recommendation> merged = new ArrayList<Recommendation>();
+		while (!left.isEmpty() && !right.isEmpty()){
+			if (!(left.get(0).getProbability() < right.get(0).getProbability())){
+				merged.add(left.remove(0));
+			}	
+			else {
+				merged.add(right.remove(0));
+			}
+		}
+		merged.addAll(left);
+		merged.addAll(right);
+		return merged;
+	}
+	
+	public void mergeSort(){
+		// main method of mergeSort for RecommendationList
+		ArrayList<Recommendation> input = this.getRecommendations();
+		if (input.size() != 1) {
+			ArrayList<Recommendation> left = new ArrayList<Recommendation>();
+			ArrayList<Recommendation> right = new ArrayList<Recommendation>();
+			boolean switcher = true;
+			while (!input.isEmpty()){
+				if (switcher){
+					left.add(input.remove(0));
+				}
+				else {
+					right.add(input.remove(0));
+				}
+				switcher = !switcher;
+			}
+			RecommendationList leftList = new RecommendationList();
+			RecommendationList rightList = new RecommendationList();
+			leftList.setRecommendations(left);
+			rightList.setRecommendations(right);
+			leftList.mergeSort();
+			rightList.mergeSort();
+			input.addAll(leftList.merge(rightList));
+		}
 	}
 }
