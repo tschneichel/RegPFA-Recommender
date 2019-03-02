@@ -30,14 +30,48 @@ public class MainRecommender {
         	System.exit(0);
         }
         // reads allSystems.data as an object file and stores its content on allSystemsList
-        ArrayList<String> test = new ArrayList<String>();
-        test.add("b(complete)");
-        test.add("c(complete)");
-        test.add("a(complete)");
-        //test.add("e(complete)");
-        //test.add("f(complete)");
+        ArrayList<String> transitionSequence = new ArrayList<String>();
+        // variable for transition Sequence
+        int howMany = 1;
+        // variable for amount of recommendations
+        BufferedReader br = null;
+    	// iterate new BufferedReader in order to read config file
+        String splitForSequence = ", ";
+        // String by which the transition sequence will be separated
+        try {
+        	br = new BufferedReader(new InputStreamReader(new FileInputStream("data/config.txt"), "ISO-8859-1"));
+        	br.readLine();
+        	// skip first line as its just declarative
+        	howMany = Integer.valueOf(br.readLine().toString());
+        	// read next line as number of recommendations
+        	br.readLine();
+        	// skip next line as its just declarative
+        	String[] splitLine = br.readLine().toString().split(splitForSequence);
+        	transitionSequence.add(splitLine[0].substring(1, splitLine[0].length()));
+        	// read first element of transition sequence, disregarding the "[" at the start, and save it on transitionSequence
+        	for (int i = 1; i < splitLine.length - 1 ; i++){
+        		transitionSequence.add(splitLine[i]);
+        	}
+        	// read 2nd to second-to-last element of transition sequence and save it on transitionSequence
+        	transitionSequence.add(splitLine[splitLine.length-1].substring(0, splitLine[splitLine.length-1].length()-1));
+        	// read last element of transition sequence, disregarding the "]" at the end, and save it on transitionSequence
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        
+        System.out.println(transitionSequence);
         // TODO: Create input for this as well as the number of recommendations.
-        ArrayList<Recommendation> result = allSystemsList.recommendNextTransition(test, 3, allFrequenciesList);
+        ArrayList<Recommendation> result = allSystemsList.recommendNextTransition(transitionSequence, howMany, allFrequenciesList);
         for (Recommendation recommendation : result){
         	recommendation.print();
         }

@@ -59,7 +59,7 @@ public class TransitionSystem implements Serializable{
     	// https://stackoverflow.com/questions/3627426/loading-a-file-relative-to-the-executing-jar-file
         //...
     	BufferedReader br = null;
-    	// iterate new BufferedReader in order to read tsvFile
+    	// iterate new BufferedReader in order to read tsml file
         String splitForStates = " ";
         // Char by which lines concerning state names in tsml-files can be separated
         String splitForTransitions = "\"";

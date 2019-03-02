@@ -28,7 +28,7 @@ public class MainAnalyzer {
 	        // reads allSystems.data as an object file and stores its content on allSystemsList as well as allTransitions.data and stores it on allFrequenciesList
 			//System.out.println(System.currentTimeMillis()-startTime);
 			//startTime = System.currentTimeMillis();
-			String pfaFile = "data/test_set3.txt";
+			String pfaFile = "data/test_set2.txt";
 			TransitionSystem newSystem = new TransitionSystem(allFrequenciesList, pfaFile);
 			allFrequenciesList.mergeSort();
 			allFrequenciesList.updateMap();

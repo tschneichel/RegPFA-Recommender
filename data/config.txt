@@ -1,0 +1,4 @@
+Number of Recommendations:
+3
+Previous Transition Sequence:
+[d(complete), c(complete), a(complete)]
