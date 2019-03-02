@@ -41,6 +41,8 @@ public class RecommendationList {
 	
 	public ArrayList<RecommendationCluster> createClusters(){
 		// creates clusters containing only transitions of the same name from a list of recommendations
+		this.mergeSort();
+		// Sorting the recommendations first
 		ArrayList<RecommendationCluster> clusters = new ArrayList<RecommendationCluster>();
 		ArrayList<String> names = new ArrayList<String>();
 		// pre-creates variables

@@ -85,7 +85,7 @@ public class TransitionSystemList implements Serializable{
 					for (int i = foundNormally; i < allRecommendations.getRecommendations().size(); i++){
 						allRecommendations.getRecommendations().get(i).setProbability(allRecommendations.getRecommendations().get(i).getProbability() / totalNewFrequencies);
 					}
-
+					finalResult = allRecommendations;
 				}
 				else {
 					// if no recommendation was found at all (i.e. the last modeled element was not ever recorded previously)
@@ -95,12 +95,12 @@ public class TransitionSystemList implements Serializable{
 						}
 						counter++;
 					}
+					finalResult = allRecommendations;
 					// return the first howMany transitions from the sorted list of all transitions and their respective frequencies
 					// with probability according to their frequency
 				}
 			}
 		}
-		finalResult = allRecommendations;
 		finalResult.weighRecommendations();
 		return finalResult.getRecommendations();
 	}
