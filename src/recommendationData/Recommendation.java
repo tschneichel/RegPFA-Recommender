@@ -19,10 +19,12 @@ public class Recommendation {
 	}
 	
 	public void print(){
+		// Simply prints the recommendation with associated values
 		System.out.println("Recommend "+this.getNextTransition()+" with probability "+this.getProbability());
 	}
 	
 	public Recommendation(Double probability, String nextTransition){
+		// constructor
 		this.probability = probability;
 		this.nextTransition = nextTransition;
 	}

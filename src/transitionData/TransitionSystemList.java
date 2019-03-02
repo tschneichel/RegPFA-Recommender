@@ -24,7 +24,6 @@ public class TransitionSystemList implements Serializable{
 	
 	
 	public ArrayList<Recommendation> recommendNextTransition(ArrayList<String> currentTransitions, int howMany, TransitionFrequencyList allFrequencies){
-		// TODO: Make howMany flexible
 		RecommendationList allRecommendations = new RecommendationList();
 		int startingPoint = 0;
 		int endPoint = currentTransitions.size();

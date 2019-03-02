@@ -233,9 +233,7 @@ public class TransitionSystem implements Serializable{
 					ArrayList<Recommendation> recommendations = transition.getTarget().getRecommendations(new ArrayList<String> (sequence.subList(1, sequence.size())), probability);
 					// and check whether it's possible to move through the transition system by following the sequence of transitions.
 					result.addAll(recommendations);
-				}
-				// TODO: Check whether addAll does what's expected (add all entries of ArrayList to another ArrayList)
-				
+				}				
 				// all possible next transitions and their probabilities are stored in result
 			}
 

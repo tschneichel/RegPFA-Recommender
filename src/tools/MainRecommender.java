@@ -7,7 +7,7 @@ import recommendationData.Recommendation;
 import transitionData.*;
 
 public class MainRecommender {
-	public static void main (String args[]){
+	public static void main (String args[]) throws IOException{
         FileInputStream fis = null;
         ObjectInputStream in = null;
         TransitionSystemList allSystemsList = new TransitionSystemList();
@@ -23,6 +23,12 @@ public class MainRecommender {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        if (allSystemsList.getAllSystems().isEmpty() || allFrequenciesList.getAllFrequencies().isEmpty()){
+        	System.out.println("Your datafiles appear to be empty, please run the analyzer first.");
+        	System.out.println("Press the enter key to exit this program.");
+        	System.in.read();
+        	System.exit(0);
+        }
         // reads allSystems.data as an object file and stores its content on allSystemsList
         ArrayList<String> test = new ArrayList<String>();
         test.add("b(complete)");
@@ -30,6 +36,7 @@ public class MainRecommender {
         test.add("a(complete)");
         //test.add("e(complete)");
         //test.add("f(complete)");
+        // TODO: Create input for this as well as the number of recommendations.
         ArrayList<Recommendation> result = allSystemsList.recommendNextTransition(test, 3, allFrequenciesList);
         for (Recommendation recommendation : result){
         	recommendation.print();

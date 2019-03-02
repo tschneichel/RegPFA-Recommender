@@ -6,7 +6,7 @@ import transitionData.*;
 
 public class MainAnalyzer {
 	public static void main (String args[]){
-		int max = 9;
+		int max = 1;
 		for (int i = 0; i < max; i++){
 			//System.out.println(i);
 			//long startTime = System.currentTimeMillis();
@@ -23,12 +23,12 @@ public class MainAnalyzer {
 	            allFrequenciesList = (TransitionFrequencyList) in.readObject();
 	            in.close();
 	        } catch (Exception ex) {
-	            ex.printStackTrace();
+	            System.out.println("A Datafile was not found. Please check your data folder for \"allSystems.data\" and \"allTransitions.data.\"");
 	        }
 	        // reads allSystems.data as an object file and stores its content on allSystemsList as well as allTransitions.data and stores it on allFrequenciesList
 			//System.out.println(System.currentTimeMillis()-startTime);
 			//startTime = System.currentTimeMillis();
-			String pfaFile = "data/test_set2.txt";
+			String pfaFile = "data/test_set3.txt";
 			TransitionSystem newSystem = new TransitionSystem(allFrequenciesList, pfaFile);
 			allFrequenciesList.mergeSort();
 			allFrequenciesList.updateMap();
@@ -36,9 +36,7 @@ public class MainAnalyzer {
 			// sorts the list of all transitions by the frequency of their appearance after the new transition system was read
 			//newSystem.printWholeSystem();
 			//System.out.println("");
-			allSystemsList.getAllSystems().add(newSystem);
-			// TODO: Change file location: reads a new transition system from <<file location to be specified>> and stores it on the list
-			
+			allSystemsList.getAllSystems().add(newSystem);			
 			try {
 				FileOutputStream fileOutput = new FileOutputStream("allSystems.data");
 				ObjectOutputStream output = new ObjectOutputStream(fileOutput);
@@ -48,10 +46,8 @@ public class MainAnalyzer {
 				output.writeObject(allFrequenciesList);
 				output.close();
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			// stores the list as allSystems.data for further program runs
