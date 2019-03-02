@@ -5,7 +5,7 @@ import java.io.*;
 import transitionData.*;
 
 public class MainAnalyzer {
-	public static void main (String args[]){
+	public static void main (String args[]) throws IOException{
 		int max = 1;
 		for (int i = 0; i < max; i++){
 			//System.out.println(i);
@@ -54,6 +54,8 @@ public class MainAnalyzer {
 			//System.out.println(System.currentTimeMillis()-startTime);
 			//System.out.println();
 		}
+		System.out.println("RegPFA_Analzyer finished. Press enter to continue.");
+		System.in.read();
 	}
 
 }

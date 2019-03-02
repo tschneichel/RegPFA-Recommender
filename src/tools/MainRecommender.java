@@ -75,6 +75,7 @@ public class MainRecommender {
         for (Recommendation recommendation : result){
         	recommendation.print();
         }
-        
+        System.out.println("RegPFA_Recommender finished. Press enter to continue.");
+        System.in.read();
 	}
 }
