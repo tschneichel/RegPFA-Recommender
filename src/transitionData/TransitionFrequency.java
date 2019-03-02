@@ -3,6 +3,7 @@ package transitionData;
 import java.io.Serializable;
 
 public class TransitionFrequency implements Serializable{
+	private static final long serialVersionUID = 1L;
 	public String label;
 	public int frequency;
 	

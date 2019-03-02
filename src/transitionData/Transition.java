@@ -1,9 +1,9 @@
 package transitionData;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Transition implements Serializable{
+	private static final long serialVersionUID = 1L;
 	public State source;
 	public State target;
 	public String label;

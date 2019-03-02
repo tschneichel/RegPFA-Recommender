@@ -2,9 +2,6 @@ package recommendationData;
 
 import java.util.ArrayList;
 
-import transitionData.TransitionFrequency;
-import transitionData.TransitionFrequencyList;
-
 public class RecommendationList {
 	ArrayList<Recommendation> recommendations = new ArrayList<Recommendation>();
 	ArrayList<String> transitionLabels = new ArrayList<String>();

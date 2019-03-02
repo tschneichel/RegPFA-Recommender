@@ -2,14 +2,10 @@ package transitionData;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import recommendationData.Recommendation;
 
 public class TransitionFrequencyList implements Serializable{
+	private static final long serialVersionUID = 1L;
 	public ArrayList<TransitionFrequency> allFrequencies = new ArrayList<TransitionFrequency>();
 	public HashMap<String, Integer> labelToPosition = new HashMap<String, Integer>();
 	

@@ -7,6 +7,7 @@ import recommendationData.Recommendation;
 import recommendationData.RecommendationList;
 
 public class TransitionSystemList implements Serializable{
+	private static final long serialVersionUID = 1L;
 	public ArrayList<TransitionSystem> allSystems;
 
 	public ArrayList<TransitionSystem> getAllSystems() {

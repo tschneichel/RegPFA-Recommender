@@ -13,6 +13,7 @@ import java.util.Map;
 import recommendationData.Recommendation;
 
 public class TransitionSystem implements Serializable{
+	private static final long serialVersionUID = 1L;
 	public Map<String, ArrayList<Transition>> nameToTransition = new HashMap<String, ArrayList<Transition>>();
 	public Map<String, State> nameToState = new HashMap<String, State>();
 	public ArrayList<String> stateNames;

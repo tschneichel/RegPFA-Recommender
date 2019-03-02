@@ -8,6 +8,7 @@ import java.util.Map;
 import recommendationData.Recommendation;
 
 public class State implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String label;
 	public Map<String, ArrayList<Transition>> transitionsTo = new HashMap<String, ArrayList<Transition>>();
 	public Map<String, ArrayList<Transition>> transitionsFrom = new HashMap<String, ArrayList<Transition>>();
