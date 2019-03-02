@@ -13,10 +13,11 @@ public class MainRecommender {
         TransitionSystemList allSystemsList = new TransitionSystemList();
         TransitionFrequencyList allFrequenciesList = new TransitionFrequencyList();
         try {
-            fis = new FileInputStream("allSystems.data");
+            // reads allSystems.data as an object file and stores its content on allSystemsList as well as allTransitions.data, stored on allFrequenciesList
+            fis = new FileInputStream("data\\allSystems.data");
             in = new ObjectInputStream(fis);
             allSystemsList = (TransitionSystemList) in.readObject();
-            fis = new FileInputStream("allTransitions.data");
+            fis = new FileInputStream("data\\allTransitions.data");
             in = new ObjectInputStream(fis);
             allFrequenciesList = (TransitionFrequencyList) in.readObject();
             in.close();
@@ -24,12 +25,12 @@ public class MainRecommender {
             ex.printStackTrace();
         }
         if (allSystemsList.getAllSystems().isEmpty() || allFrequenciesList.getAllFrequencies().isEmpty()){
+        	// If no transition systems where read yet
         	System.out.println("Your datafiles appear to be empty, please run the analyzer first.");
         	System.out.println("Press the enter key to exit this program.");
         	System.in.read();
         	System.exit(0);
         }
-        // reads allSystems.data as an object file and stores its content on allSystemsList
         ArrayList<String> transitionSequence = new ArrayList<String>();
         // variable for transition Sequence
         int howMany = 1;

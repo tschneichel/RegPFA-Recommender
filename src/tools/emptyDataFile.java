@@ -18,10 +18,10 @@ public class emptyDataFile {
 			TransitionSystemList testSystemList = new TransitionSystemList();
 			TransitionFrequencyList testFrequencyList = new TransitionFrequencyList();
 			try {
-				FileOutputStream fileOutput = new FileOutputStream("allSystems.data");
+				FileOutputStream fileOutput = new FileOutputStream("data\\allSystems.data");
 				ObjectOutputStream output = new ObjectOutputStream(fileOutput);
 				output.writeObject(testSystemList);
-				fileOutput = new FileOutputStream("allTransitions.data");
+				fileOutput = new FileOutputStream("data\\allTransitions.data");
 				output = new ObjectOutputStream(fileOutput);
 				output.writeObject(testFrequencyList);
 				output.close();
