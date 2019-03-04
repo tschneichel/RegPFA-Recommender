@@ -38,6 +38,7 @@ public class MainAnalyzer {
 					// sorts the list of all transitions by the frequency of their appearance after the new transition system was read and updates the corresponding map
 					allSystemsList.getAllSystems().add(newSystem);
 					child.renameTo(new File("archive\\"+child.getName()));
+					newSystem.printWholeSystem();
 				}
 			}
 		  } else {

@@ -2,6 +2,7 @@ package transitionData;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import recommendationData.Recommendation;
 import recommendationData.RecommendationList;
@@ -29,7 +30,7 @@ public class TransitionSystemList implements Serializable{
 		int startingPoint = 0;
 		int endPoint = currentTransitions.size();
 		ArrayList<String> uniqueFound = new ArrayList<String>();
-		// start with the first transition in the given list
+		// pre-creating variables
 		while (startingPoint < endPoint && uniqueFound.size()<howMany){
 			// iterate over the starting point in the given list of transitions and stop when either the end of the list was reached
 			// OR enough possible following transitions were found
@@ -48,7 +49,13 @@ public class TransitionSystemList implements Serializable{
 			}
 			allRecommendations.getRecommendations().addAll(currentRecommendations);
 			// before adding them to the lists of results
-			currentTransitions.remove(0);
+			//currentTransitions.remove(0);
+			// TODO: Fix this section...
+			ArrayList<String> tempList = new ArrayList<String>();
+			for (int i = 1; i < currentTransitions.size(); i++){
+				tempList.add(currentTransitions.get(i));
+			}
+			currentTransitions = tempList;
 			// removing the first element of transition sequence to only search for shorter sequences now
 			startingPoint++;
 		}

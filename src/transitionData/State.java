@@ -64,9 +64,11 @@ public class State implements Serializable {
 			return true;
 		}
 		if (this.getTransitionsTo().containsKey(sequence.get(0))){
-			
+			return containsSequence (new ArrayList<String> (sequence.subList(1, sequence.size())));
 		}
-		return containsSequence (new ArrayList<String> (sequence.subList(1, sequence.size())));
+		else {
+			return false;
+		}
 	}
 
 
@@ -113,10 +115,7 @@ public class State implements Serializable {
 				// multiplied by probability of current transition to occur starting from this state 
 				ArrayList<Recommendation> recommendations = transition.getTarget().getRecommendations(new ArrayList<String> (sequence.subList(1, sequence.size())), new_probability);
 				// recursive call of this function. The first element of sequence was removed and the probability was altered
-				result.addAll(recommendations);
-				
-				// TODO: Check whether addAll does what's expected (add all entries of ArrayList to another ArrayList)
-				
+				result.addAll(recommendations);				
 				// all possible next transitions and their probabilities are stored in result
 			}
 		}
@@ -139,6 +138,11 @@ public class State implements Serializable {
 				Double recommendationProbability = totalProbability * probability;
 				// calculate the probability of said transition to occur by summing up the probabilities to leave the current state
 				// via this transition and then multiply by the probability to reach this state with the initial sequence
+				if (recommendationProbability > 1.0){
+					recommendationProbability = 1.0;
+				}
+				// If the probabilities to leave this state sum up to a number greater than 1 and the probability to land on
+				// this state is 1, reset the total probability to 1 since there can't be a probability greater than 1.
 				Recommendation recommendation = new Recommendation(recommendationProbability, transitionName);
 				// Save next transition name as well as the aforementioned probability as a recommendation
 				result.add(recommendation);
