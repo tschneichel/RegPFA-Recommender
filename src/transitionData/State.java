@@ -145,8 +145,6 @@ public class State implements Serializable {
 				// add the recommendation to result
 			}
 			return (result);
-			
-			// TODO: Exception for end state. Probably add "endstate = true" in constructor of states and set it to false when a transitions to this state was created
 		}
 	
 }
