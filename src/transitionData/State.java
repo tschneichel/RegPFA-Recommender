@@ -58,19 +58,6 @@ public class State implements Serializable {
 		newList.add(transition);
 		this.transitionsFrom.put(transition.getLabel(), newList);
 	}
-	
-	public boolean containsSequence (ArrayList<String> sequence){
-		if (sequence.isEmpty()){
-			return true;
-		}
-		if (this.getTransitionsTo().containsKey(sequence.get(0))){
-			return containsSequence (new ArrayList<String> (sequence.subList(1, sequence.size())));
-		}
-		else {
-			return false;
-		}
-	}
-
 
 	public ArrayList<Recommendation> getRecommendations(ArrayList<String> sequence, Double probability) {
 		ArrayList<Recommendation> result = new ArrayList<Recommendation>();
