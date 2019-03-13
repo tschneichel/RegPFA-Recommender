@@ -4,7 +4,7 @@ import java.io.*;
 
 import transitionData.*;
 
-public class MainAnalyzer {
+public class MainReader {
 	public static void main (String args[]) throws IOException{
         FileInputStream fis = null;
         ObjectInputStream in = null;
@@ -58,7 +58,7 @@ public class MainAnalyzer {
 			e.printStackTrace();
 		}
 		// stores the lists for further program runs
-		System.out.println("RegPFA_Analzyer finished. Press enter to continue.");
+		System.out.println("RegPFA_Reader finished. Press enter to continue.");
 		System.in.read();
 	}
 
