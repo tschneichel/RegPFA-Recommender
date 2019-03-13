@@ -56,10 +56,10 @@ public class MainRecommender {
         	// skip next line as its just declarative
         	weightFactor = Integer.valueOf(br.readLine().toString());
         	// read next line as weightFactor
-        	if (weightFactor < 1){
-        		weightFactor = 1;
+        	if (weightFactor < 0){
+        		weightFactor = 0;
         	}
-        	// In case of false user input, fix weightFactor to 1
+        	// In case of false user input, fix weightFactor to 0
         	br.readLine();
         	// skip next line as its just declarative
         	String[] splitLine = br.readLine().toString().split(splitForSequence);
