@@ -58,8 +58,11 @@ public class TransitionSystemList implements Serializable{
 			// removing the first element of transition sequence to only search for shorter sequences now
 			startingPoint++;
 		}
-		allRecommendations.mergeRecommendations(weightFactor);
-		// Merge multiple recommendations for the same transition to just one
+		if (!allRecommendations.getRecommendations().isEmpty()){
+			// if any recommendation was found at all
+			allRecommendations.mergeRecommendations(weightFactor);
+			// Merge multiple recommendations for the same transition to just one
+		}
 		RecommendationList finalResult = new RecommendationList();
 		int foundNormally = allRecommendations.getRecommendations().size();
 		// store amount of recommendations found via checking for previous transitions on foundNormally
@@ -105,6 +108,10 @@ public class TransitionSystemList implements Serializable{
 					// return the first howMany transitions from the sorted list of all transitions and their respective frequencies
 					// with probability according to their frequency
 				}
+			}
+			else{
+				// if exactly as many recommendations were found as needed
+				finalResult = allRecommendations;
 			}
 		}
 		finalResult.weighRecommendations();

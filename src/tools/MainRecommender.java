@@ -63,14 +63,22 @@ public class MainRecommender {
         	br.readLine();
         	// skip next line as its just declarative
         	String[] splitLine = br.readLine().toString().split(splitForSequence);
-        	transitionSequence.add(splitLine[0].substring(1, splitLine[0].length()));
-        	// read first element of transition sequence, disregarding the "[" at the start, and save it on transitionSequence
-        	for (int i = 1; i < splitLine.length - 1 ; i++){
-        		transitionSequence.add(splitLine[i]);
+        	if (splitLine.length == 1){
+        		// if only a single event transpired
+        		transitionSequence.add(splitLine[0].substring(1, splitLine[0].length()-1));
+        		// add that event to the transition sequence, disregarding the "[" at the start and the "]" at the end and save it on transitionSequence
         	}
-        	// read 2nd to second-to-last element of transition sequence and save it on transitionSequence
-        	transitionSequence.add(splitLine[splitLine.length-1].substring(0, splitLine[splitLine.length-1].length()-1));
-        	// read last element of transition sequence, disregarding the "]" at the end, and save it on transitionSequence
+        	else {
+        		// if more than one event transpired
+	        	transitionSequence.add(splitLine[0].substring(1, splitLine[0].length()));
+	        	// read first element of transition sequence, disregarding the "[" at the start, and save it on transitionSequence
+	        	for (int i = 1; i < splitLine.length - 1 ; i++){
+	        		transitionSequence.add(splitLine[i]);
+	        	}
+	        	// read 2nd to second-to-last element of transition sequence and save it on transitionSequence
+	        	transitionSequence.add(splitLine[splitLine.length-1].substring(0, splitLine[splitLine.length-1].length()-1));
+	        	// read last element of transition sequence, disregarding the "]" at the end, and save it on transitionSequence
+        	}
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -84,8 +92,6 @@ public class MainRecommender {
                 }
             }
         }
-        
-        System.out.println(transitionSequence);
         // TODO: Create input for this as well as the number of recommendations.
         ArrayList<Recommendation> result = allSystemsList.recommendNextTransition(transitionSequence, howMany, weightFactor, allFrequenciesList);
         for (Recommendation recommendation : result){

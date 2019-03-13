@@ -116,6 +116,13 @@ public class State implements Serializable {
 			// This marks the end of the recursion
 			ArrayList<String> allTransitions = new ArrayList<String>(this.getTransitionsTo().keySet());
 			// Store the names of all possible transitions as an ArrayList of Strings
+			if (allTransitions.isEmpty()){
+				// if the current state is a final state with no outgoing transitions
+				Recommendation endProcess = new Recommendation(probability, "<End of Process reached>");
+				result.add(endProcess);
+				return (result);
+				// recommend no further transition
+			}
 			for (String transitionName : allTransitions){
 				// Iterate over all possible transitions
 				Double totalProbability = 0.0;
