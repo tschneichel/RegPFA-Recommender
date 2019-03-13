@@ -2,7 +2,6 @@ package transitionData;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import recommendationData.Recommendation;
 import recommendationData.RecommendationList;
