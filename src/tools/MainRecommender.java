@@ -93,6 +93,5 @@ public class MainRecommender {
         }
         System.out.println("RegPFA_Recommender finished. Press enter to continue.");
         System.in.read();
-        System.out.println("hoping this commit goes through");
 	}
 }
