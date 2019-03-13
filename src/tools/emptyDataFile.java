@@ -41,7 +41,6 @@ public class emptyDataFile {
 		System.in.read();
 		}
 		scanner.close();
-		System.out.println("try");
 	}
 	
 
