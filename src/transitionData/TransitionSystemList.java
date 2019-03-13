@@ -76,6 +76,7 @@ public class TransitionSystemList implements Serializable{
 		else {
 			if (foundNormally < howMany){
 				// if fewer transitions were found than need to be returned
+				System.out.println("Only "+foundNormally+" definite recommendations were found.");
 				int counter = 0;
 				if (foundNormally != 0){
 					// if at least one recommendation was found
