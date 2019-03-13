@@ -35,6 +35,9 @@ public class MainRecommender {
         // variable for transition Sequence
         int howMany = 1;
         // variable for amount of recommendations
+        int weightFactor = 1;
+        // variable for weightFactor, i.e. the natural number that denotes how little subsequences with smaller length shall be weighed.
+        // The higher weightFactor, the lower they are weighed.
         BufferedReader br = null;
     	// iterate new BufferedReader in order to read config file
         String splitForSequence = ", ";
@@ -45,6 +48,18 @@ public class MainRecommender {
         	// skip first line as its just declarative
         	howMany = Integer.valueOf(br.readLine().toString());
         	// read next line as number of recommendations
+        	if (howMany < 1){
+        		howMany = 1;
+        	}
+        	// In case of false user input, fix howMany to 1
+        	br.readLine();
+        	// skip next line as its just declarative
+        	weightFactor = Integer.valueOf(br.readLine().toString());
+        	// read next line as weightFactor
+        	if (weightFactor < 1){
+        		weightFactor = 1;
+        	}
+        	// In case of false user input, fix weightFactor to 1
         	br.readLine();
         	// skip next line as its just declarative
         	String[] splitLine = br.readLine().toString().split(splitForSequence);
@@ -72,7 +87,7 @@ public class MainRecommender {
         
         System.out.println(transitionSequence);
         // TODO: Create input for this as well as the number of recommendations.
-        ArrayList<Recommendation> result = allSystemsList.recommendNextTransition(transitionSequence, howMany, allFrequenciesList);
+        ArrayList<Recommendation> result = allSystemsList.recommendNextTransition(transitionSequence, howMany, weightFactor, allFrequenciesList);
         for (Recommendation recommendation : result){
         	recommendation.print();
         }

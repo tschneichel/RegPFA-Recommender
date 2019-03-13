@@ -25,7 +25,7 @@ public class TransitionSystemList implements Serializable{
 	}
 	
 	
-	public ArrayList<Recommendation> recommendNextTransition(ArrayList<String> currentTransitions, int howMany, TransitionFrequencyList allFrequencies){
+	public ArrayList<Recommendation> recommendNextTransition(ArrayList<String> currentTransitions, int howMany, int weightFactor, TransitionFrequencyList allFrequencies){
 		RecommendationList allRecommendations = new RecommendationList();
 		int startingPoint = 0;
 		int endPoint = currentTransitions.size();
@@ -59,7 +59,7 @@ public class TransitionSystemList implements Serializable{
 			// removing the first element of transition sequence to only search for shorter sequences now
 			startingPoint++;
 		}
-		allRecommendations.mergeRecommendations();
+		allRecommendations.mergeRecommendations(weightFactor);
 		// Merge multiple recommendations for the same transition to just one
 		RecommendationList finalResult = new RecommendationList();
 		int foundNormally = allRecommendations.getRecommendations().size();

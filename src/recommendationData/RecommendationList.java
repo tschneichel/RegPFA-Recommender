@@ -22,7 +22,7 @@ public class RecommendationList {
 		this.transitionLabels = transitionLabels;
 	}
 
-	public void mergeRecommendations(){
+	public void mergeRecommendations(int weightFactor){
 		// Merges probabilities for transitions with the same name
 		ArrayList<RecommendationCluster> clusters = this.createClusters();
 		// creates clusters
@@ -30,7 +30,7 @@ public class RecommendationList {
 		ArrayList<String> transitionNames = new ArrayList<String>();
 		// pre-create variable for result
 		for (RecommendationCluster cluster : clusters){
-			cluster.clusterToSingle();
+			cluster.clusterToSingle(weightFactor);
 			finalResult.add(cluster.getFinalRecommendation());
 			transitionNames.add(cluster.getLabel());
 		}

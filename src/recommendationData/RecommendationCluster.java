@@ -35,10 +35,10 @@ public class RecommendationCluster {
 		this.getProbabilities().add(probability);
 	}
 	
-	public void clusterToSingle(){
+	public void clusterToSingle(int weightFactor){
 		// Calculates the overall probability for this cluster and stores it on FinalRecommendation
 		int biggestPosition = this.findBiggestProbability();
-		Double totalProbability = this.mergeProbabilities(biggestPosition);
+		Double totalProbability = this.mergeProbabilities(biggestPosition, weightFactor);
 		Recommendation finalResult = new Recommendation(totalProbability, this.getLabel());
 		this.setFinalRecommendation(finalResult);
 	}
@@ -56,7 +56,7 @@ public class RecommendationCluster {
 		return result;
 	}
 	
-	public Double mergeProbabilities(int biggest){
+	public Double mergeProbabilities(int biggest, int weightFactor){
 		// calculates the overall probability given the index of the biggest probability in the cluster
 		Double result = this.getProbabilities().get(biggest);
 		this.getProbabilities().remove(biggest);
@@ -70,15 +70,15 @@ public class RecommendationCluster {
 		// 4 hops performed when the maximum is just 3 in this example.
 		for (Double probability : this.getProbabilities()){
 			Double maxLeft = nextHighest - result;
-			result += maxLeft * probability / nextHighest / (Math.pow(((nextHighest-1)-probability.intValue()),2)+1);
+			result += maxLeft * probability / nextHighest / Math.pow(((nextHighest)-probability.intValue()),weightFactor);
 		}
 		// Calculates total probability by performing the following steps for all probabilities p in the cluster:
 		// Store the difference between the next highest integer "nextHighest", indicating one more hop than the maximum amount of hops in this cluster, on maxLeft
 		// Multiply this value by the proportion of p divided by "next Highest" - the result of this is a percentage of maxLeft proportional to the
 		// difference of the current probability and the total probability (result) so far.
 		// If we stop here, one big probability (e.g. 10.23) and multiple small probabilities (e.g. 50 times 1.2) would result in a total probability
-		// of close to 11 (10.9976). Therefore, we normalize by also dividing by the squared difference of the number of hops between the highest
-		// and all other probabilities plus one. In the example above, this would lead to a total probability of 10.2796 which better represents the reality.
+		// of close to 11 (10.9976). Therefore, we normalize by also dividing by the difference of the number of hops between the highest
+		// and all other probabilities raised by a user-chosen weightFactor. In the example above, this would lead to a total probability of 10.2796 which better represents the reality.
 		return result;
 	}
 }
