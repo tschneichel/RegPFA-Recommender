@@ -37,6 +37,7 @@ public class MainReader {
 					allFrequenciesList.updateMap();
 					// sorts the list of all transitions by the frequency of their appearance after the new transition system was read and updates the corresponding map
 					allSystemsList.getAllSystems().add(newSystem);
+					new File ("archive\\"+child.getName()).delete();
 					child.renameTo(new File("archive\\"+child.getName()));
 					//newSystem.printWholeSystem();
 				}
