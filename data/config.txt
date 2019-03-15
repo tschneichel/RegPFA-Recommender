@@ -3,4 +3,4 @@ Number of Recommendations:
 Weight Factor for Subsequences:
 2
 Previous Transition Sequence:
-[a(complete), f(complete)]
+[]

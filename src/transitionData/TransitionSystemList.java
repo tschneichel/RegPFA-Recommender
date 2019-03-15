@@ -26,40 +26,64 @@ public class TransitionSystemList implements Serializable{
 	
 	public ArrayList<Recommendation> recommendNextTransition(ArrayList<String> currentTransitions, int howMany, int weightFactor, TransitionFrequencyList allFrequencies){
 		RecommendationList allRecommendations = new RecommendationList();
-		int startingPoint = 0;
-		int endPoint = currentTransitions.size();
-		ArrayList<String> uniqueFound = new ArrayList<String>();
-		// pre-creating variables
-		while (startingPoint < endPoint && uniqueFound.size()<howMany){
-			// iterate over the starting point in the given list of transitions and stop when either the end of the list was reached
-			// OR enough possible following transitions were found
-			ArrayList<Recommendation> currentRecommendations = new ArrayList<Recommendation>();
+		// pre-creating list where all possible recommendations are stored
+		if (currentTransitions.isEmpty()){
+			// If no prior transitions are recorded, we want to output transitions from the start state
 			for (TransitionSystem currentSystem : this.getAllSystems()){
-				currentRecommendations.addAll(currentSystem.getRecommendations(currentTransitions));
-			}
-			// Iterate over all systems and get recommendations adhering to the current list of previous transitions
-			for (Recommendation recommendation : currentRecommendations){
-				recommendation.setProbability(recommendation.getProbability()+currentTransitions.size());
-				// Since longer sequences of transitions are weighed more heavily, inflate the probability by adding the length of the sequence
-				if (!uniqueFound.contains(recommendation.getNextTransition())){
-					uniqueFound.add(recommendation.getNextTransition());
+				// iterate over all transition system
+				for (String currentState : currentSystem.stateNames){
+					// iterate over all states in that system
+					if (currentSystem.getNameToState().get(currentState).getTransitionsFrom().isEmpty()){
+						// find starting state of the system, i.e. the state that has no transitions leading to it
+						for (String currentTransitionName : currentSystem.getNameToState().get(currentState).getTransitionsTo().keySet()){
+							// iterate over all transition names originating from the starting state
+							for (Transition currentTransition : currentSystem.getNameToState().get(currentState).getTransitionsTo().get(currentTransitionName)){
+								// iterate over all targets from the currently viewed transition name originating from the start state
+								allRecommendations.getRecommendations().add(new Recommendation(currentTransition.probability +1, currentTransitionName));
+								// add target as recommendation with probability inflated by adding 1
+							}
+						}
+					}
 				}
-				// Check if the transition to be performed next was already found in an earlier iteration in order to guarantee that howMany unique transitions will be returned
 			}
-			allRecommendations.getRecommendations().addAll(currentRecommendations);
-			// before adding them to the lists of results
-			//currentTransitions.remove(0);
-			// TODO: Fix this section...
-			ArrayList<String> tempList = new ArrayList<String>();
-			for (int i = 1; i < currentTransitions.size(); i++){
-				tempList.add(currentTransitions.get(i));
+		}
+		else {
+			// if at least one prior transition exists
+			int startingPoint = 0;
+			int endPoint = currentTransitions.size();
+			ArrayList<String> uniqueFound = new ArrayList<String>();
+			// pre-creating variables
+			while (startingPoint < endPoint && uniqueFound.size()<howMany){
+				// iterate over the starting point in the given list of transitions and stop when either the end of the list was reached
+				// OR enough possible following transitions were found
+				ArrayList<Recommendation> currentRecommendations = new ArrayList<Recommendation>();
+				for (TransitionSystem currentSystem : this.getAllSystems()){
+					currentRecommendations.addAll(currentSystem.getRecommendations(currentTransitions));
+				}
+				// Iterate over all systems and get recommendations adhering to the current list of previous transitions
+				for (Recommendation recommendation : currentRecommendations){
+					recommendation.setProbability(recommendation.getProbability()+currentTransitions.size());
+					// Since longer sequences of transitions are weighed more heavily, inflate the probability by adding the length of the sequence
+					if (!uniqueFound.contains(recommendation.getNextTransition())){
+						uniqueFound.add(recommendation.getNextTransition());
+					}
+					// Check if the transition to be performed next was already found in an earlier iteration in order to guarantee that howMany unique transitions will be returned
+				}
+				allRecommendations.getRecommendations().addAll(currentRecommendations);
+				// before adding them to the lists of results
+				//currentTransitions.remove(0);
+				// TODO: Fix this section...
+				ArrayList<String> tempList = new ArrayList<String>();
+				for (int i = 1; i < currentTransitions.size(); i++){
+					tempList.add(currentTransitions.get(i));
+				}
+				currentTransitions = tempList;
+				// removing the first element of transition sequence to only search for shorter sequences now
+				startingPoint++;
 			}
-			currentTransitions = tempList;
-			// removing the first element of transition sequence to only search for shorter sequences now
-			startingPoint++;
 		}
 		if (!allRecommendations.getRecommendations().isEmpty()){
-			// if any recommendation was found at all
+			// if at least one recommendation was found
 			allRecommendations.mergeRecommendations(weightFactor);
 			// Merge multiple recommendations for the same transition to just one
 		}

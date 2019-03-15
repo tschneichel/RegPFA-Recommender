@@ -64,9 +64,15 @@ public class MainRecommender {
         	// skip next line as its just declarative
         	String[] splitLine = br.readLine().toString().split(splitForSequence);
         	if (splitLine.length == 1){
-        		// if only a single event transpired
-        		transitionSequence.add(splitLine[0].substring(1, splitLine[0].length()-1));
-        		// add that event to the transition sequence, disregarding the "[" at the start and the "]" at the end and save it on transitionSequence
+        		// if only a single event transpired (also contains the case that no event transpired at all)
+        		if (splitLine[0].equals("[]")){
+        			// If no event transpired, use an empty list
+        		}
+        		else {
+        			// if one event transpired
+        			transitionSequence.add(splitLine[0].substring(1, splitLine[0].length()-1));
+        			// add that event to the transition sequence, disregarding the "[" at the start and the "]" at the end and save it on transitionSequence
+        		}
         	}
         	else {
         		// if more than one event transpired
