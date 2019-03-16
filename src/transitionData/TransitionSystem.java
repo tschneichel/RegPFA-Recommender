@@ -53,11 +53,6 @@ public class TransitionSystem implements Serializable{
 	}
 
 	public TransitionSystem(TransitionFrequencyList allTransitions, String pfaFile){
-    	// ToDo: Ultimately, the file needs to be read from the JAR's location. Since we don't have a JAR currently,
-    	// the file source used above has to be altered to suit the actual location
-    	// Once we have the JAR, refer to the link below for possible fixes
-    	// https://stackoverflow.com/questions/3627426/loading-a-file-relative-to-the-executing-jar-file
-        //...
     	BufferedReader br = null;
     	// iterate new BufferedReader in order to read tsml file
         String splitForStates = " ";
