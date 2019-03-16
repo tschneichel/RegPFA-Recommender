@@ -26,7 +26,7 @@ public class MainRecommender {
         }
         if (allSystemsList.getAllSystems().isEmpty() || allFrequenciesList.getAllFrequencies().isEmpty()){
         	// If no transition systems where read yet
-        	System.out.println("Your datafiles appear to be empty, please run the analyzer first.");
+        	System.out.println("Your datafiles appear to be empty, please run the Reader first.");
         	System.out.println("Press the enter key to exit this program.");
         	System.in.read();
         	System.exit(0);
