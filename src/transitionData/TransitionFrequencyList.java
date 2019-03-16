@@ -74,7 +74,7 @@ public class TransitionFrequencyList implements Serializable{
 	 * It runs considerably faster than mergeSort when a large part of the list to the left is already sorted (nearly O(n) time)
 	 * However, since it is not guaranteed that this condition holds true most of the time, standard mergeSort is used as the default sorting algorithm here
 	 * 
-	public void sort(){
+	public void divideSort(){
 		// Sorts the list of all transitions in a way that is efficient for repeated program runs
 		// This is under the assumption that new transition systems likely won't change the frequencies of already encountered transitions
 		// in a meaningful way after a certain point. If that holds true, a huge amount of elements "to the left" of the list are already sorted
