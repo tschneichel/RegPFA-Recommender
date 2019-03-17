@@ -61,35 +61,6 @@ public class State implements Serializable {
 
 	public ArrayList<Recommendation> getRecommendations(ArrayList<String> sequence, Double probability) {
 		ArrayList<Recommendation> result = new ArrayList<Recommendation>();
-		/*// This method generates all recommendations for a certain sequence of transitions and a given start state
-		ArrayList<Recommendation> result = new ArrayList<Recommendation>();
-		if (sequence.size() == 0){
-			// If the end of the input sequence was reached, all possible transitions from the current state may be recommended
-			// This marks the end of the recursion
-			ArrayList<String> allTransitions = new ArrayList<String>(this.getTransitionsTo().keySet());
-			// Store the names of all possible transitions as an ArrayList of Strings
-			for (String transitionName : allTransitions){
-				// Iterate over all possible transitions
-				Recommendation recommendation = new Recommendation();
-				recommendation.setNextTransition(transitionName);
-				// Create a new recommendation with the name of the current transition
-				Double totalProbability = 0.0;
-				for (Transition transition : this.getTransitionsTo().get(transitionName)){
-					totalProbability += transition.getProbability();
-				}
-				recommendation.setProbability(totalProbability * probability);
-				// calculate the probability of said transition to occur by summing up the probabilities to leave the current state
-				// via this transition and then multiply by the probability to reach this state with the initial sequence
-				result.add(recommendation);
-				// add the recommendation to result
-			}
-			return (result);
-			
-			// TODO: Exception for end state. Probably add "endstate = true" in constructor of states and set it to false when a transitions to this state was created
-		}*/
-		
-		// Part above probably not needed due to new function below
-		
 		if (sequence.size() == 0){
 			return (this.getFinalRecommendations(probability));
 		}
