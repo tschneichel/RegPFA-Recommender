@@ -73,7 +73,7 @@ public class TransitionSystem implements Serializable{
         			String stateName = splitLine[1].substring(4, splitLine[1].length()-2);
         			// Remove unnecessary chars to retrieve the state's name
         			State tempState = new State();
-        			tempState.setLabel(stateName);
+        			tempState.setLabel(stateName.toLowerCase());
         			// Create a new state with label according to the state's name in the tsml-file
         			nameToState.put(stateName, tempState);
         			stateNames.add(stateName);
@@ -112,7 +112,7 @@ public class TransitionSystem implements Serializable{
         			// probability will be of the form [value], so finding the position of the last "[" will indicate where probability begins
         			Double probability = Double.valueOf(tempLabel.substring(splitIndicator, tempLabel.length()-1));
         			// transform probability into a Double and store it
-        			tempLabel = tempLabel.substring(0, splitIndicator-2);
+        			tempLabel = tempLabel.substring(0, splitIndicator-2).toLowerCase();
         			// cut the probability off from the transition name
         			tempTransition.setLabel(tempLabel);
         			// add the label to the transition
@@ -216,24 +216,26 @@ public class TransitionSystem implements Serializable{
 		// based on a single transition system
 		ArrayList<Recommendation> result = new ArrayList<Recommendation>();
 		// pre-creating the return element
-		if (this.getTransitionNames().contains(sequence.get(0))){
-			// If the first transition name in the sequence exists in the transition system
-			for (Transition transition : this.getNameToTransition().get(sequence.get(0))){
-				// iterate over all transitions of that name
-				Double probability = transition.getProbability();
-				if (sequence.size() == 1){
-					ArrayList<Recommendation> recommendations = transition.getTarget().getFinalRecommendations(probability);
-					result.addAll(recommendations);
-				}
-				else {
-					ArrayList<Recommendation> recommendations = transition.getTarget().getRecommendations(new ArrayList<String> (sequence.subList(1, sequence.size())), probability);
-					// and check whether it's possible to move through the transition system by following the sequence of transitions.
-					result.addAll(recommendations);
-				}				
-				// all possible next transitions and their probabilities are stored in result
+		for (String event : sequence){
+			// for all transitions in the sequence
+			if (!this.getTransitionNames().contains(event)){
+				return result;
 			}
-
-			return (result);
+			// if the transition does not exist in the transition system, a match can't be found and hence an empty list is returned
+		}
+		for (Transition transition : this.getNameToTransition().get(sequence.get(0))){
+			// iterate over all transitions of that name
+			Double probability = transition.getProbability();
+			if (sequence.size() == 1){
+				ArrayList<Recommendation> recommendations = transition.getTarget().getFinalRecommendations(probability);
+				result.addAll(recommendations);
+			}
+			else {
+				ArrayList<Recommendation> recommendations = transition.getTarget().getRecommendations(new ArrayList<String> (sequence.subList(1, sequence.size())), probability);
+				// and check whether it's possible to move through the transition system by following the sequence of transitions.
+				result.addAll(recommendations);
+			}				
+			// all possible next transitions and their probabilities are stored in result
 		}
 		return result;
 	}

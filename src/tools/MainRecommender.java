@@ -70,19 +70,19 @@ public class MainRecommender {
         		}
         		else {
         			// if one event transpired
-        			transitionSequence.add(splitLine[0].substring(1, splitLine[0].length()-1));
+        			transitionSequence.add(splitLine[0].substring(1, splitLine[0].length()-1).toLowerCase());
         			// add that event to the transition sequence, disregarding the "[" at the start and the "]" at the end and save it on transitionSequence
         		}
         	}
         	else {
         		// if more than one event transpired
-	        	transitionSequence.add(splitLine[0].substring(1, splitLine[0].length()));
+	        	transitionSequence.add(splitLine[0].substring(1, splitLine[0].length()).toLowerCase());
 	        	// read first element of transition sequence, disregarding the "[" at the start, and save it on transitionSequence
 	        	for (int i = 1; i < splitLine.length - 1 ; i++){
-	        		transitionSequence.add(splitLine[i]);
+	        		transitionSequence.add(splitLine[i].toLowerCase());
 	        	}
 	        	// read 2nd to second-to-last element of transition sequence and save it on transitionSequence
-	        	transitionSequence.add(splitLine[splitLine.length-1].substring(0, splitLine[splitLine.length-1].length()-1));
+	        	transitionSequence.add(splitLine[splitLine.length-1].substring(0, splitLine[splitLine.length-1].length()-1).toLowerCase());
 	        	// read last element of transition sequence, disregarding the "]" at the end, and save it on transitionSequence
         	}
         } catch (FileNotFoundException e) {
