@@ -18,6 +18,7 @@ public class TransitionSystem implements Serializable{
 	public Map<String, State> nameToState = new HashMap<String, State>();
 	public ArrayList<String> stateNames;
 	public ArrayList<String> transitionNames;
+	public State startState;
 
 	public Map<String, ArrayList<Transition>> getNameToTransition() {
 		return nameToTransition;
@@ -51,6 +52,14 @@ public class TransitionSystem implements Serializable{
 	public void setTransitionNames(ArrayList<String> transitionNames) {
 		this.transitionNames = transitionNames;
 	}
+	
+	public State getStartState() {
+		return startState;
+	}
+
+	public void setStartState(State startState) {
+		this.startState = startState;
+	}
 
 	public TransitionSystem(TransitionFrequencyList allTransitions, String pfaFile){
     	BufferedReader br = null;
@@ -74,7 +83,8 @@ public class TransitionSystem implements Serializable{
         			// Remove unnecessary chars to retrieve the state's name
         			State tempState = new State();
         			tempState.setLabel(stateName.toLowerCase());
-        			// Create a new state with label according to the state's name in the tsml-file
+        			tempState.setStartState(false);
+        			// Create a new state with label according to the state's name in the tsml-file and mark it as non start state for now
         			nameToState.put(stateName, tempState);
         			stateNames.add(stateName);
         			// And put it in the map of all states, as well as its name in the List of all state names
@@ -194,7 +204,7 @@ public class TransitionSystem implements Serializable{
 	public void printWholeSystem(){
 		System.out.println("The transition system consists of the following states:");
 		for (int i = 0; i < this.stateNames.size(); i++){
-			System.out.println(this.nameToState.get(stateNames.get(i)).getLabel());
+			System.out.println(this.nameToState.get(stateNames.get(i)).getLabel()+" with probability "+this.nameToState.get(stateNames.get(i)).getProbability());
 		}
 		System.out.println("And the following transitions:");
 		for (int i = 0; i < this.transitionNames.size(); i++){
@@ -225,7 +235,17 @@ public class TransitionSystem implements Serializable{
 		}
 		for (Transition transition : this.getNameToTransition().get(sequence.get(0))){
 			// iterate over all transitions of that name
-			Double probability = transition.getProbability();
+			Double probability;
+			if (transition.getSource().getProbability() == 0.0){
+				// if the probability of the source state is 0, i.e. the transition system contains a circle / is incomplete
+				probability = transition.getProbability();
+				// set starting probability for the recommendation to that of the the transition
+			}
+			else {
+				// if the probability of the source state is not 0
+				probability = transition.getProbability() * transition.getSource().getProbability();
+				// set starting probability of the recommendations to that of the transition multiplied by the source state's probability
+			}
 			if (sequence.size() == 1){
 				ArrayList<Recommendation> recommendations = transition.getTarget().getFinalRecommendations(probability);
 				result.addAll(recommendations);
@@ -238,6 +258,82 @@ public class TransitionSystem implements Serializable{
 			// all possible next transitions and their probabilities are stored in result
 		}
 		return result;
+	}
+	
+	public void setStateProbabilities(){
+		// this method adds the probability to land on each state when traversing the transition system randomly to each state
+		boolean startStateFound = false;
+		int stateIndex = 0;
+		ArrayList<State> allStates = new ArrayList<State>();
+		// pre-creating variables
+		for (int i = 0; i < this.getStateNames().size(); i++){
+			// creates ArrayList of all states in the system for ease of use
+			allStates.add(this.getNameToState().get(this.getStateNames().get(i)));
+		}
+		while (!startStateFound && stateIndex < allStates.size()){
+			// iterate over all states and find the starting state, i.e. the state that has no transitions pointing towards it
+			if (allStates.get(stateIndex).getTransitionsFrom().isEmpty()){
+				allStates.get(stateIndex).setStartState(true);
+				// mark it as the start state
+				allStates.get(stateIndex).setProbability(1.0);
+				// set its probability to 1
+				startStateFound = true;
+				// end the while loop by falsifying the condition
+				this.setStartState(allStates.get(stateIndex));
+				// set start state of the transition system
+			}
+			stateIndex++;
+		}
+		boolean newPositions = true;
+		// boolean used to stop while loop prematurely if a circle exists in the transition system
+		while (!(allStates.size() == 1) && newPositions){
+			// while not all state probabilities have been set
+			ArrayList<Integer> positions = new ArrayList<Integer>();
+			// ArrayList that stores the positions of all states that were used in the next step to set probabilities for other states
+			for (int i = 0; i < allStates.size(); i++){
+				// iterate over all states that have not been used to set state probabilities of other states yet
+				if (!(allStates.get(i).probability == 0.0)){
+					// if the probability of the current state is not 0, i.e. the state's probabilities has been set already
+					boolean transitionsCovered = true;
+					for (String s : allStates.get(i).getTransitionsFrom().keySet()){
+						for (Transition t : allStates.get(i).getTransitionsFrom().get(s)){
+							// iterate over all transitions to the state
+							if (t.getUsed() == false){
+								transitionsCovered = false;
+								// if at least one transition to the state was not used to generate probabilities yet, the state can not be used
+								// to set probabilities for other states yet
+							}
+						}
+					}
+					if (transitionsCovered){
+						// if all transitions pointing to the current state were used to generate probabilities
+						positions.add(i);
+						// add the state to probabilities
+					}
+				}
+			}
+			if (positions.isEmpty()){
+				// if no states were found that fulfill the conditions outlined above, a circle must exist in the transition system.
+				// Therefore, stop setting state probabilities by ending the while loop
+				newPositions = false;
+			}
+			else{
+				for (int i = positions.size()-1; i >= 0; i--){
+					for (String s : allStates.get(positions.get(i)).getTransitionsTo().keySet()){
+						for (Transition t : allStates.get(positions.get(i)).getTransitionsTo().get(s)){
+							// iterate over all transitions from the state towards other states
+							t.setUsed(true);
+							// mark the transition as used to generate new state probabilities
+							t.getTarget().setProbability(t.getTarget().getProbability() + t.getSource().getProbability() * t.getProbability());
+							// add the probability of the source state of t multiplied by the probability of t to the probability of the target state of t
+						}
+					}
+					State tempState = allStates.get(positions.get(i));
+					allStates.remove(tempState);
+				}
+				// otherwise, remove all states that were used to set other state positions from the list of states and continue looping
+			}
+		}
 	}
 	
 }

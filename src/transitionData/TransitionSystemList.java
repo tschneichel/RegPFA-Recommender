@@ -31,6 +31,22 @@ public class TransitionSystemList implements Serializable{
 			// If no prior transitions are recorded, we want to output transitions from the start state
 			for (TransitionSystem currentSystem : this.getAllSystems()){
 				// iterate over all transition system
+				for (String currentTransitionName : currentSystem.getStartState().getTransitionsTo().keySet()){
+					// iterate over all transition labels originating from the starting state
+					for (Transition currentTransition : currentSystem.getStartState().getTransitionsTo().get(currentTransitionName)){
+						// iterate over all transitions of the currently viewed transition labels originating from the start state
+						allRecommendations.getRecommendations().add(new Recommendation(currentTransition.probability +1, currentTransitionName));
+						// add label as recommendation with probability inflated by adding 1
+					}
+				}
+			}
+		}
+		
+		
+		/*if (currentTransitions.isEmpty()){
+			// If no prior transitions are recorded, we want to output transitions from the start state
+			for (TransitionSystem currentSystem : this.getAllSystems()){
+				// iterate over all transition system
 				for (String currentState : currentSystem.stateNames){
 					// iterate over all states in that system
 					if (currentSystem.getNameToState().get(currentState).getTransitionsFrom().isEmpty()){
@@ -46,7 +62,7 @@ public class TransitionSystemList implements Serializable{
 					}
 				}
 			}
-		}
+		}*/
 		else {
 			// if at least one prior transition exists
 			int startingPoint = 0;

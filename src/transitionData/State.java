@@ -10,12 +10,15 @@ import recommendationData.Recommendation;
 public class State implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String label;
+	public Double probability;
+	public boolean startState;
 	public Map<String, ArrayList<Transition>> transitionsTo = new HashMap<String, ArrayList<Transition>>();
 	public Map<String, ArrayList<Transition>> transitionsFrom = new HashMap<String, ArrayList<Transition>>();
 	
 	public State(){
 		this.setTransitionsFrom(new HashMap<String, ArrayList<Transition>>());
 		this.setTransitionsTo(new HashMap<String, ArrayList<Transition>>());
+		this.setProbability(0.0);
 	}
 	
 	
@@ -47,6 +50,23 @@ public class State implements Serializable {
 		this.transitionsFrom = transitionsFrom;
 	}
 	
+	public Double getProbability() {
+		return probability;
+	}
+
+
+	public void setProbability(Double probability) {
+		this.probability = probability;
+	}
+
+	public boolean isStartState() {
+		return startState;
+	}
+
+	public void setStartState(boolean startState) {
+		this.startState = startState;
+	}
+
 	public void addTransitionTo (Transition transition){
 		ArrayList<Transition> newList = this.getTransitionsTo().get(transition.getLabel());
 		newList.add(transition);
