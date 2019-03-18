@@ -315,6 +315,10 @@ public class TransitionSystem implements Serializable{
 			if (positions.isEmpty()){
 				// if no states were found that fulfill the conditions outlined above, a circle must exist in the transition system.
 				// Therefore, stop setting state probabilities by ending the while loop
+				
+				// TODO: If this method is even needed, some sort of workaround needs to be found here to continue the algorithm even though
+				// a circle exists. E.g. finding out which states with an already set probability are part of a circle and excluding edges
+				// for the process of state probability calculation until no circle exists
 				newPositions = false;
 			}
 			else{
