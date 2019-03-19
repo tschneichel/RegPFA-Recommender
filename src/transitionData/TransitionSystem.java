@@ -254,6 +254,9 @@ public class TransitionSystem implements Serializable{
 	public void setStateProbabilities2(){
 		for (String s : this.getStateNames()){
 			this.getNameToState().get(s).setProbability(1.0);
+			if (this.getNameToState().get(s).getTransitionsFrom().isEmpty()){
+				this.getNameToState().get(s).setStartState(true);
+			}
 		}
 	}
 	
