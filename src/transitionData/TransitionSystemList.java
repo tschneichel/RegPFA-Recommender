@@ -41,28 +41,6 @@ public class TransitionSystemList implements Serializable{
 				}
 			}
 		}
-		
-		
-		/*if (currentTransitions.isEmpty()){
-			// If no prior transitions are recorded, we want to output transitions from the start state
-			for (TransitionSystem currentSystem : this.getAllSystems()){
-				// iterate over all transition system
-				for (String currentState : currentSystem.stateNames){
-					// iterate over all states in that system
-					if (currentSystem.getNameToState().get(currentState).getTransitionsFrom().isEmpty()){
-						// find starting state of the system, i.e. the state that has no transitions leading to it
-						for (String currentTransitionName : currentSystem.getNameToState().get(currentState).getTransitionsTo().keySet()){
-							// iterate over all transition names originating from the starting state
-							for (Transition currentTransition : currentSystem.getNameToState().get(currentState).getTransitionsTo().get(currentTransitionName)){
-								// iterate over all targets from the currently viewed transition name originating from the start state
-								allRecommendations.getRecommendations().add(new Recommendation(currentTransition.probability +1, currentTransitionName));
-								// add target as recommendation with probability inflated by adding 1
-							}
-						}
-					}
-				}
-			}
-		}*/
 		else {
 			// if at least one prior transition exists
 			int startingPoint = 0;
@@ -132,9 +110,11 @@ public class TransitionSystemList implements Serializable{
 					for (int i = foundNormally; i < allRecommendations.getRecommendations().size(); i++){
 						totalNewFrequencies += allRecommendations.getRecommendations().get(i).getProbability();
 					}
+					// calculating total amount of frequencies over all frequency based recommendations
 					for (int i = foundNormally; i < allRecommendations.getRecommendations().size(); i++){
 						allRecommendations.getRecommendations().get(i).setProbability(allRecommendations.getRecommendations().get(i).getProbability() / totalNewFrequencies);
 					}
+					// dividing all frequencies by the total amount
 					finalResult = allRecommendations;
 				}
 				else {

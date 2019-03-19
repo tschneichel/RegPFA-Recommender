@@ -98,7 +98,6 @@ public class MainRecommender {
                 }
             }
         }
-        // TODO: Create input for this as well as the number of recommendations.
         ArrayList<Recommendation> result = allSystemsList.recommendNextTransition(transitionSequence, howMany, weightFactor, allFrequenciesList);
         for (Recommendation recommendation : result){
         	recommendation.print();

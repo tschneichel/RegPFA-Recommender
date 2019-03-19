@@ -264,6 +264,7 @@ public class TransitionSystem implements Serializable{
 				startState = this.getNameToState().get(this.getStateNames().get(stateIndex));
 				// set start state to current state
 				startState.setStartState(true);
+				this.setStartState(startState);
 				startStateFound = true;
 				// set parameters
 			}

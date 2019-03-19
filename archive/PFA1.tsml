@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<tsml label="bigger-example.mxml" layout="true">
+<state id="state1">
+<name>
+<text>
+s0</text>
+</name>
+<graphics>
+<position x="251.0" y="236.0"/>
+<dimension x="50.0" y="30.0"/>
+<fill color="#c0c0c0"/>
+</graphics>
+</state>
+<state id="state2">
+<name>
+<text>
+s1</text>
+</name>
+<graphics>
+<position x="263.5" y="511.0"/>
+<dimension x="50.0" y="30.0"/>
+<fill color="#c0c0c0"/>
+</graphics>
+</state>
+<state id="state3">
+<name>
+<text>
+s2</text>
+</name>
+<graphics>
+<position x="264.0" y="126.0"/>
+<dimension x="50.0" y="30.0"/>
+<fill color="#c0c0c0"/>
+</graphics>
+</state>
+<transition id="transition1" source="state1" target="state2">
+<name>
+<text>
+A [1.0]</text>
+</name>
+</transition>
+<transition id="transition2" source="state2" target="state3">
+<name>
+<text>
+B [1.0]</text>
+</name>
+</transition>
+</tsml>
