@@ -58,6 +58,12 @@ public class TransitionSystemList implements Serializable{
 				for (Recommendation recommendation : currentRecommendations){
 					recommendation.setProbability(recommendation.getProbability()+currentTransitions.size());
 					// Since longer sequences of transitions are weighed more heavily, inflate the probability by adding the length of the sequence
+					if (recommendation.getProbability().intValue() == recommendation.getProbability()){
+						recommendation.setProbability(recommendation.getProbability()-0.0001);
+					}
+					// Adjusting the recommendation value by subtracting 0,0001 in case the uninflated proability was 1.0
+					// Needed to ensure accuracy of recommendations since else a recommendation with currentTransitions length of 1
+					// And probability 1 can lead to higher ranked recommendations than a recommendation with currentTransition length of 2, but probability lower than 1
 					if (!uniqueFound.contains(recommendation.getNextTransition())){
 						uniqueFound.add(recommendation.getNextTransition());
 					}
@@ -65,8 +71,6 @@ public class TransitionSystemList implements Serializable{
 				}
 				allRecommendations.getRecommendations().addAll(currentRecommendations);
 				// before adding them to the lists of results
-				//currentTransitions.remove(0);
-				// TODO: Fix this section...
 				ArrayList<String> tempList = new ArrayList<String>();
 				for (int i = 1; i < currentTransitions.size(); i++){
 					tempList.add(currentTransitions.get(i));
