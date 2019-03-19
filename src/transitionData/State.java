@@ -136,4 +136,29 @@ public class State implements Serializable {
 			return (result);
 		}
 	
+	public void setStateProbabilities(ArrayList<State> alreadyVisited, Double probability){
+		// this function adds the parameter probability to the current state's probability, then follows every transition from this state
+		// and adds probability * transition_probability to the probability of that state by calling itself
+		// the recursion ends once either an end state was reached, i.e. no transitions are possible
+		// or if a state is reached that was already visited in the ongoing transition sequence, i.e. a circle was found
+		this.setProbability(this.getProbability() + probability);
+		// set probability of current state
+		ArrayList<State> newlyVisited = new ArrayList<State>(); 
+		for (int i = 0; i < alreadyVisited.size(); i++){
+			newlyVisited.add(alreadyVisited.get(i));
+		}
+		newlyVisited.add(this);
+		// create new object for list of all visited states, add current state to it
+		for (String s : this.getTransitionsTo().keySet()){
+			for (Transition t : this.getTransitionsTo().get(s)){
+				// for all transitions originating from the current state
+				if (!newlyVisited.contains(t.getTarget())){
+					// if the target of the transition was not already visited by the current transition sequence
+					t.getTarget().setStateProbabilities(newlyVisited, probability * t.getProbability());
+					// recursive call with new list of visited states and new probability
+				}
+			}
+		}
+	}
+	
 }
