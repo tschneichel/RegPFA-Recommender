@@ -9,7 +9,6 @@ public class Transition implements Serializable{
 	public String label;
 	public int count;
 	public Double probability;
-	public boolean used;
 	
 	
 	
@@ -43,12 +42,7 @@ public class Transition implements Serializable{
 	public void setProbability(Double probability) {
 		this.probability = probability;
 	}
-	public boolean getUsed() {
-		return used;
-	}
-	public void setUsed(boolean used) {
-		this.used = used;
-	}
+
 	
 	
 }
