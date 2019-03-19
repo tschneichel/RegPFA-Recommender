@@ -42,6 +42,7 @@ public class Transition implements Serializable{
 	public void setProbability(Double probability) {
 		this.probability = probability;
 	}
+
 	
 	
 }

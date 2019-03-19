@@ -1,6 +1,6 @@
 Number of Recommendations:
-30
+5
 Weight Factor for Subsequences:
 2
 Previous Transition Sequence:
-[a(complete)]
+[a(complete), c(complete)]

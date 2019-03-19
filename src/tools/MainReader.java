@@ -33,13 +33,15 @@ public class MainReader {
 		    		String pfaFile = path.concat(child.getName());
 					TransitionSystem newSystem = new TransitionSystem(allFrequenciesList, pfaFile);
 					// creates new transition system from input .tsml file
+					newSystem.setStateProbabilities();
+					// set state probabilities for the new system
 					allFrequenciesList.mergeSort();
 					allFrequenciesList.updateMap();
 					// sorts the list of all transitions by the frequency of their appearance after the new transition system was read and updates the corresponding map
 					allSystemsList.getAllSystems().add(newSystem);
 					new File ("archive\\"+child.getName()).delete();
 					child.renameTo(new File("archive\\"+child.getName()));
-					//newSystem.printWholeSystem();
+					newSystem.printWholeSystem();
 				}
 			}
 		  } else {
