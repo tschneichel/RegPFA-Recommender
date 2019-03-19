@@ -33,7 +33,12 @@ public class MainReader {
 		    		String pfaFile = path.concat(child.getName());
 					TransitionSystem newSystem = new TransitionSystem(allFrequenciesList, pfaFile);
 					// creates new transition system from input .tsml file
-					newSystem.setStateProbabilities();
+					if (newSystem.getStateNames().size() <= 22){
+						newSystem.setStateProbabilities();
+					}
+					else {
+						newSystem.setStateProbabilities2();
+					}
 					// set state probabilities for the new system
 					allFrequenciesList.mergeSort();
 					allFrequenciesList.updateMap();
