@@ -251,6 +251,12 @@ public class TransitionSystem implements Serializable{
 		return result;
 	}
 	
+	public void setStateProbabilities2(){
+		for (String s : this.getStateNames()){
+			this.getNameToState().get(s).setProbability(1.0);
+		}
+	}
+	
 	public void setStateProbabilities(){
 		// this method finds the starting state and then starts a recursive function that sets probabilities for all states
 		boolean startStateFound = false;
