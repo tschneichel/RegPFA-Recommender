@@ -46,7 +46,7 @@ public class MainReader {
 					allSystemsList.getAllSystems().add(newSystem);
 					new File ("archive\\"+child.getName()).delete();
 					child.renameTo(new File("archive\\"+child.getName()));
-					newSystem.printWholeSystem();
+				//	newSystem.printWholeSystem();
 				}
 			}
 		  } else {
