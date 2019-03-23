@@ -1,8 +1,6 @@
 # RegPFA-Recommender
 
-How to use
-
-:
+How to use:
 
 1. Run EmptyDataFile.bat
 
@@ -11,8 +9,8 @@ How to use
 3. Run Reader
 
 4. Edit config.txt in data folder
-5. 
-Run Recommender
+
+5. Run Recommender
 
 1)
 When first downloading this program, it is recommended to run "EmptyDataFile.bat" first. 
