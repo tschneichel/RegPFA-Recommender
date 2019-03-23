@@ -33,6 +33,7 @@ Previous Transition Sequence:
 [Harry Truman, Doris Day, Red China, Johnnie Ray, South Pacific, Walter Winchell]
 
 
+5)
 After you're all set up, you may run "Recommender.bat" which will first show you the sequence of events detailed in the config.txt file and then list as many recommendations as you specified. For the example above, it may look like this:
 
 [Harry Truman, Doris Day, Red China, Johnnie Ray, South Pacific, Walter Winchell]  
